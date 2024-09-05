@@ -1,6 +1,9 @@
 
 import React from "react"
-import Header from "./Components/Header"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Home from "./Pages/Home"
+import CarDetails from "./Components/CarDetails"
+import CarBreadcrumb from "./Components/Breadcrumb"
 
 
 
@@ -8,11 +11,12 @@ import Header from "./Components/Header"
 function App() {
 
   return (
-    <>
-      <div className="App" bg='dark'>
-        <Header />
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/details" element={<CarDetails />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
