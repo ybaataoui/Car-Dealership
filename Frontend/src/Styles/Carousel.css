@@ -1,0 +1,33 @@
+/* Carousel.css */
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-inner {
+  height: 500px; /* Adjust based on your design */
+}
+
+.carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between thumbnails */
+  padding: 10px;
+  background-color: #f8f9fa; /* Background color for the thumbnails area */
+}
+
+.carousel-thumbnail {
+  width: 100px; /* Adjust size of thumbnails */
+  height: auto;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #dee2e6; /* Border for thumbnails */
+  border-radius: 4px; /* Rounded corners for thumbnails */
+  transition: transform 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.carousel-thumbnail:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  border-color: #007bff; /* Change border color on hover */
+}

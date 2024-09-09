@@ -1,62 +1,38 @@
 import React from "react";
 import CarBreadcrumb from "./Breadcrumb";
-import car from '../assets/Car.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPhone, faEnvelope, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Navbar from "../Components/Navbar";
+import ImgCarousel from "./ImgCarousel";
 
 function CarDetails() {
     return (
 
         <div className="container">
-            <div className="bg-black">
+            <div className="bg-black pb-4">
                 <div className="">
                     <Navbar />
                 </div>
-
-                <div>
-                    <h1>Car name</h1>
+                <div className="d-flex flex-column align-items-center pt-4">
+                    <h1 className="text-light">Honda Accord Sedan</h1>
                     <CarBreadcrumb />
                 </div>
             </div>
-
-            <div className="bg-light ">
-                <div className="row ">
+            <div className=" container bg-light mb-4">
+                <div className="row pt-4">
                     <div className="col-8">
                         <div className="d-flex justify-content-between w-100">
                             <div className="text-start flex-fill ">
-                                <p>Sedan</p>
-                                <p>Orlando</p>
+                                <p className="fw-bold"> Honda Accord Sedan</p>
+                                <p><FontAwesomeIcon icon={faMapMarker} /> Orlando</p>
                             </div>
-                            <div className="text-end flex-fill ">$15,000</div>
+                            <div className="text-end flex-fill text-danger fw-bold">$15,000</div>
                         </div>
                         {/* Carousel pictures of the car */}
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            </div>
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img src={car} className="d-block w-100 img" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={car} className="d-block w-100 img" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={car} className="d-block w-100 img" alt="..." />
-                                </div>
-                            </div>
-                            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Previous</span>
-                            </button>
-                            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Next</span>
-                            </button>
+                        <ImgCarousel />
+                        <div>
+                            {/* need to include car description and car features */}
                         </div>
                     </div>
                     <div className="col-4 text-center">

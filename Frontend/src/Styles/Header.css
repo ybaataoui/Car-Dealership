@@ -6,3 +6,15 @@
   width: 300px;
   height: 600px;
 }
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: white !important; /* Apply white color to links */
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: white !important; /* Apply white color to active item */
+}
+
+.custom-breadcrumb .breadcrumb-item::before {
+  color: white !important; /* Apply white color to separator */
+}

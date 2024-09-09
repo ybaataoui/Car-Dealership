@@ -15,9 +15,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<CarDetails />} />
+        <Route path="/carsList" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
 export default App
+
+
+

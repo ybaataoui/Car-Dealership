@@ -1,13 +1,13 @@
 import React from "react";
 import NavBar from "./Navbar";
-import Carousel from "./Carousel";
 import Searchbar from "./Searchbar";
+import HomeCarousel from "./HomeCarousel";
 
 function Header() {
     return (
         <div className="container">
             <NavBar />
-            <Carousel />
+            <HomeCarousel />
             <Searchbar />
         </div>
 
