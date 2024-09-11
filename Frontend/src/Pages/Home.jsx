@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Components/Header";
+import Header from "./Header";
 import Footer from "./Footer"
 import Car from "../Components/Car";
 
