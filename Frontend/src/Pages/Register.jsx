@@ -1,13 +1,10 @@
 import React from "react";
+import Form from "../Components/Form";
 
 
 
 function Register() {
-    return (
-        <div>
-            Register
-        </div>
-    )
+    return <Form route="/api/user/register/" method="register" />
 };
 
 

@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("query/", views.QueryListCreate.as_view(), name="query-list"),
-    path("query/delete/<int:pk>/", views.QueryDelete.as_view(), name="delete-query"),
+    path("inquiries/", views.InquiryListCreate.as_view(), name="inquiry-list"),
+    path("inquiries/delete/<int:pk>/", views.InquiryDelete.as_view(), name="delete-inquiry"),
 ]

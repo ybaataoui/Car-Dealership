@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
-from .serializers import UserSerializer, QuerySerializer
+from .serializers import UserSerializer, InquirySerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Query
+from .models import Inquiry
 
-#Create a list of Queries
-class QueryListCreate(generics.ListCreateAPIView):
-    serializer_class = QuerySerializer
+#Create a list of inquiries
+class InquiryListCreate(generics.ListCreateAPIView):
+    serializer_class = InquirySerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return Query.objects.filter(author=user)
+        return Inquiry.objects.filter(author=user)
     
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -20,14 +20,14 @@ class QueryListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-#Delete a query
-class QueryDelete(generics.DestroyAPIView):
-    serializer_class = QuerySerializer
+#Delete an inquiry
+class InquiryDelete(generics.DestroyAPIView):
+    serializer_class = InquirySerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return Query.objects.filter(author=user)
+        return Inquiry.objects.filter(author=user)
 
 #Create a user
 class CreateUserView(generics.CreateAPIView):
