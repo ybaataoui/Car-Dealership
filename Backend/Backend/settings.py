@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Car',
     'api',
+    'inquiries',
     "rest_framework",
     "corsheaders",
 ]
