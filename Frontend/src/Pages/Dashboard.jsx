@@ -5,6 +5,7 @@ import Inquiry from "../Components/Inquiry";
 import "../Styles/InquiryList.css";
 import NavBar from "../Components/Navbar";
 import TopBar from "../Components/TopBar";
+import Footer from "../Pages/Footer";
 
 function Dashboard() {
   const [inquiries, setInquiries] = useState([]);
@@ -89,6 +90,7 @@ function Dashboard() {
         <br />
         <input type="submit" value="Submit"></input>
       </form>
+      <Footer />
     </div>
   );
 }

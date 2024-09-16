@@ -12,6 +12,8 @@ function LoginForm({ route, method }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  //const name = method === "login" ? "Login" : "Register";
+
   const handleLogin = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -73,7 +75,7 @@ function LoginForm({ route, method }) {
                     {loading && <LoadingIndicator />}
                     <button
                       type="submit"
-                      className="btn btn-success btn-lg btn-block"
+                      className="btn btn-success  btn-block"
                     >
                       Login
                     </button>

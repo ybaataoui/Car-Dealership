@@ -5,34 +5,32 @@ import api from "../api";
 import LoadingIndicator from "./LoadingIndicator";
 
 function RegisterForm({ route, method }) {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  //const name = method === "login" ? "Login" : "Register";
 
   const handleRegister = async (e) => {
     setLoading(true);
     e.preventDefault();
 
     try {
-      const res = await api.post(
-        route,
-        (firstname, lastname, username, password, email)
-      );
-      if (method === "register") {
-        alert("Registration successful");
+      const res = await api.post(route, { username, password });
+      if (method === "login") {
+        localStorage.setItem(ACCESS_TOKEN, res.data.access);
+        localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+        navigate("/dashboard");
+      } else {
         navigate("/login");
       }
     } catch (error) {
-      alert(error.res?.data?.detail || "Registration failed");
+      alert(error);
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="bg-light p-5">
       <div className="contact-section">
@@ -48,7 +46,7 @@ function RegisterForm({ route, method }) {
                 <h3 className="text-center mb-4">Create an Account</h3>
 
                 <form onSubmit={handleRegister}>
-                  <div className="form-group ">
+                  {/* <div className="form-group ">
                     <label htmlFor="firstname">First Name</label>
                     <input
                       type="text"
@@ -71,20 +69,20 @@ function RegisterForm({ route, method }) {
                       value={lastname}
                       onChange={(e) => setLastname(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   <div className="form-group ">
                     <label htmlFor="username">Username</label>
                     <input
                       type="text"
                       name="username"
-                      className="form-control"
+                      className="form-control-lg"
                       placeholder="Username"
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
-                  <div className="form-group ">
+                  {/* <div className="form-group ">
                     <label htmlFor="email">Email Address</label>
                     <input
                       type="email"
@@ -95,7 +93,7 @@ function RegisterForm({ route, method }) {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   <div className="form-group ">
                     <label htmlFor="password">Password</label>
                     <input

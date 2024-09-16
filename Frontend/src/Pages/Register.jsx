@@ -1,9 +1,9 @@
 import React from "react";
-import RegisterForm from "../Components/RegisterForm";
 import Footer from "./Footer";
 import TopBar from "../Components/TopBar";
 import NavBar from "../Components/Navbar";
 import { Link } from "react-router-dom";
+import RegisterForm from "../Components/RegisterForm";
 
 function Register() {
   return (
