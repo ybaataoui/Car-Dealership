@@ -5,7 +5,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import NotFound from "./Pages/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import CarDetails from "./Components/CarDetails";
+import CarDetails from "./Pages/CarDetails";
 import Dashboard from "./Pages/Dashboard";
 
 function Logout() {

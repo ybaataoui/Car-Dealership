@@ -21,8 +21,8 @@ function Footer() {
                 © {currentYear} Copyright: - www.youssefcar.com
               </p>
             </div>
-            <div className="col-lg-4">
-              <div className="social-list-2 text-lg-right text-center mt-3 mt-lg-0">
+            <div className="col-lg-4 text-end">
+              <div className="social-list-2 text-lg-right  mt-3 mt-lg-0">
                 <ul className="list-inline mb-0">
                   <li className="list-inline-item">
                     <a

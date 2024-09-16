@@ -7,7 +7,7 @@ import "../Styles/Header.css"
 function Searchbar() {
     return (
 
-        <div className="container searchbar pt-3">
+        <div className="  pt-3">
             <div class="btn-group m-2 btn-search">
                 <button class="btn btn-secondary btn-lg dropdown-toggle float-end" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Make

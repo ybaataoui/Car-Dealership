@@ -1,10 +1,12 @@
 import React from "react";
-import CarBreadcrumb from "./Breadcrumb";
+import CarBreadcrumb from "../Components/Breadcrumb";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPhone, faEnvelope, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Navbar from "../Components/Navbar";
-import ImgCarousel from "./ImgCarousel";
+import ImgCarousel from "../Components/ImgCarousel";
+import Footer from "./Footer"
+import TopBar from "../Components/TopBar";
 
 function CarDetails() {
     return (
@@ -12,6 +14,7 @@ function CarDetails() {
         <div className="container">
             <div className="bg-black pb-4">
                 <div className="">
+                    <TopBar />
                     <Navbar />
                 </div>
                 <div className="d-flex flex-column align-items-center pt-4">
@@ -127,7 +130,7 @@ function CarDetails() {
                 </div>
 
             </div>
-
+            <Footer />
         </div>
     )
 }

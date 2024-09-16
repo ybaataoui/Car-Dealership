@@ -11,8 +11,19 @@ function Dashboard() {
   const [inquiries, setInquiries] = useState([]);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await api.get("api/userinfo/");
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error(error);
+      }
+
+    };
+    fetchUserInfo();
     getInquiries();
   }, []);
 
@@ -54,8 +65,11 @@ function Dashboard() {
     <div className="container">
       <TopBar />
       <NavBar />
-      <div>
-        <h2 className="text-light">Inquiries</h2>
+      <div className="bg-light p-2">
+        <div className="text text-center pt-4">
+          {username ? <h2>Welcome, {username} !</h2> : <h2>Loading...</h2>}
+        </div>
+        <h2 className=""> Inquiries</h2>
         {inquiries.map((inquiry) => (
           <Inquiry
             inquiry={inquiry}
