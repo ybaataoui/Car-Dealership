@@ -27,7 +27,7 @@ function TopBar() {
   return (
     <div>
       <div>
-        <Navbar bg="black" variant="dark" expand="lg" className="w-100">
+        <Navbar variant="dark" expand="lg" className="w-100">
           <Container fluid>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

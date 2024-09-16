@@ -2,20 +2,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import logo from "../assets/logo.png";
 function NavBar() {
   return (
     <div>
       <div>
-        <Navbar bg="black" variant="dark" expand="lg" className="w-100">
+        <Navbar variant="dark" expand="lg" className="w-100">
           <Container fluid>
             <Navbar.Brand href="#home">
-              <img
-                src="https://www.clipartmax.com/png/small/271-2717436_contact-us-used-car-dealership-logo.png"
-                alt="Contact Us - Used Car Dealership Logo"
-                width={200}
-                height={100}
-              />
+              <img src={logo} alt="Contact Us - Used Car Dealership Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

@@ -13,5 +13,3 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-def Logout(self):
-    return render(self.request, 'logout.html')
