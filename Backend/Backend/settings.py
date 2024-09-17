@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'inquiries',
     "rest_framework",
     "corsheaders",
+    'ckeditor',
     
     
 ]
