@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styles/Inquiry.css"
 
-function Inquiry({inquiry, onDelete}) {
+function Inquiry({ inquiry, onDelete }) {
     const formattedDate = new Date(inquiry.created_at).toLocaleDateString("en-US")
     return (
         <div className="inquiry-container">

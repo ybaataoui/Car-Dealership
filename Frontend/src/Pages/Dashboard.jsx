@@ -14,18 +14,19 @@ function Dashboard() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await api.get("api/userinfo/");
-        setUsername(response.data.username);
-      } catch (error) {
-        console.error(error);
-      }
-
-    };
-    fetchUserInfo();
+    getUserInfo();
     getInquiries();
   }, []);
+
+  const getUserInfo = async () => {
+    try {
+      const response = await api.get("api/userinfo/");
+      setUsername(response.data.username);
+    } catch (error) {
+      console.error(error);
+    }
+
+  };
 
   const getInquiries = () => {
     api

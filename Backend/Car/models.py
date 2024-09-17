@@ -88,10 +88,52 @@ class Car(models.Model):
         ('6', '6'),
     )
 
+    body_style_choices = (
+        ('Sedan', 'Sedan'),
+        ('Coupe', 'Coupe'),
+        ('Van', 'Van'),
+        ('Suv', 'Suv'),
+    )
+
+    transmission_choices = (
+        ('Automatic', 'Automatic'),
+        ('Manual', 'Manual'),
+    )
+    fuel_type_choices = (
+        ('Gasoline', 'Gasoline'),
+        ('Diesel', 'Diesel'),
+        ('Electric', 'Electric'),
+        ('Hybrid', 'Hybrid'),
+        ('Hydrogen ', 'Hydrogen'),
+    )
+
+    color_choices = (
+        ('Red', 'Red'),
+        ('Blue', 'Blue'),
+        ('Green', 'Green'),
+        ('Yellow', 'Yellow'),
+        ('Orange', 'Orange'),
+        ('Purple', 'Purple'),
+        ('Pink', 'Pink'),
+        ('Brown', 'Brown'),
+        ('Black', 'Black'),
+        ('White', 'White'),
+        ('Gray', 'Gray'),
+        ('Cyan', 'Cyan'),
+        ('Magenta', 'Magenta'),
+        ('Teal', 'Teal'),
+        ('Lime', 'Lime'),
+        ('Olive', 'Olive'),
+        ('Navy', 'Navy'),
+        ('Maroon', 'Maroon'),
+        ('Silver', 'Silver'),
+        ('Gold', 'Gold')
+    )
+
     car_title = models.CharField(max_length=255)
     state = models.CharField(choices=state_choice, max_length=100)
     city = models.CharField(max_length=100)
-    color = models.CharField(max_length=100)
+    color = models.CharField(choices=color_choices, max_length=100)
     model = models.CharField(max_length=100)
     year = models.IntegerField(('year'), choices=year_choice)
     condition = models.CharField(max_length=100)
@@ -102,17 +144,17 @@ class Car(models.Model):
     car_photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     car_photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     car_photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    features = MultiSelectField(choices=features_choices)
-    body_style = models.CharField(max_length=100)
-    engine = models.CharField(max_length=100)
-    transmission = models.CharField(max_length=100)
-    interior = models.CharField(max_length=100)
+    features = MultiSelectField(choices=features_choices)    
+    body_style = models.CharField(choices=body_style_choices, max_length=100)
+    engine = models.CharField(max_length=100)    
+    transmission = models.CharField(choices=transmission_choices ,max_length=100)
+    interior = models.CharField(choices=color_choices, max_length=100)
     miles = models.IntegerField()
     doors = models.CharField(choices=door_choices, max_length=10)
     passengers = models.IntegerField()
     vin_no = models.CharField(max_length=100)
-    milage = models.IntegerField()
-    fuel_type = models.CharField(max_length=50)
+    mileage = models.IntegerField()
+    fuel_type = models.CharField( choices=fuel_type_choices, max_length=50)
     no_of_owners = models.CharField(max_length=100)
     is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
