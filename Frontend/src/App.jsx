@@ -7,6 +7,7 @@ import NotFound from "./Pages/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import CarDetails from "./Pages/CarDetails";
 import Dashboard from "./Pages/Dashboard";
+import NewInquiry from "./Pages/NewInquiry";
 
 function Logout() {
   localStorage.clear();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<CarDetails />} />
         <Route path="/cars" element={<Home />} />
+        <Route path="/newInquiry" element={<NewInquiry />} />
         <Route
           path="/dashboard"
           element={

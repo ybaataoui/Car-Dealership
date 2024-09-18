@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-bootstrap';
 import api from "../api";
 import CarBreadcrumb from "../Components/Breadcrumb";
@@ -10,6 +10,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "./Footer"
 import TopBar from "../Components/TopBar";
 import LoadingIndicator from "../Components/LoadingIndicator";
+import { Navigate } from "react-router-dom";
 
 
 function CarDetails() {
@@ -18,10 +19,15 @@ function CarDetails() {
     const [car, setCar] = useState(null); // state to hold car data
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeTab, setActiveTab] = useState("description");
+    const navigate = useNavigate()
 
     useEffect(() => {
         getCarDetails();
     }, []);
+
+    const handleNewInquiry = () => {
+        navigate("/newInquiry");
+    }
 
     // Event handlers for tab clicks
     const showDescription = () => setActiveTab("description");
@@ -150,9 +156,9 @@ function CarDetails() {
                     <div className="col-4 text-center">
                         <div className="border mb-4">
                             {/* text button */}
-                            <button className="btn btn-danger mt-4 btn-lg">
+                            <button className="btn btn-danger mt-4 btn-lg" onClick={handleNewInquiry}>
                                 Send a Message
-                            </button>
+                            </button >
                             <h3 className="text-start mt-4 ms-3">Car Specs</h3>
                             {/* Car details information */}
                             <div className="container mt-4 bg-light">

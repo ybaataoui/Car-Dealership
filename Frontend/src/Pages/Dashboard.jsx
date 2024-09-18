@@ -6,6 +6,7 @@ import "../Styles/InquiryList.css";
 import NavBar from "../Components/Navbar";
 import TopBar from "../Components/TopBar";
 import Footer from "../Pages/Footer";
+import LoadingIndicator from "../Components/LoadingIndicator"
 
 function Dashboard() {
   const [inquiries, setInquiries] = useState([]);
@@ -47,20 +48,6 @@ function Dashboard() {
       .catch((error) => alert(error));
   };
 
-  const createInquiry = (e) => {
-    e.preventDefault();
-    api
-      .post("/api/inquiries/", { description, title })
-      .then((res) => {
-        if (res.status === 201) alert("Inquiry created!");
-        else alert("Failed to make inquiry.");
-        getInquiries();
-      })
-      .catch((err) => {
-        console.log(err.res);
-        alert("Failed to make inquiry.");
-      });
-  };
 
   return (
     <div className="container">
@@ -68,44 +55,25 @@ function Dashboard() {
       <NavBar />
       <div className="bg-light p-2">
         <div className="text text-center pt-4">
-          {username ? <h2>Welcome, {username} !</h2> : <h2>Loading...</h2>}
+          {username ? <h2>Welcome, {username} !</h2> : <h2 className="text-center"><LoadingIndicator /></h2>}
         </div>
         <h2 className=""> Inquiries</h2>
-        {inquiries.map((inquiry) => (
-          <Inquiry
-            inquiry={inquiry}
-            onDelete={deleteInquiry}
-            key={inquiry.id}
-          />
-        ))}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          {inquiries.map((inquiry) => (
+            <Inquiry inquiry={inquiry} onDelete={deleteInquiry} key={inquiry.id} />
+          ))}
+
+        </table>
       </div>
-      <h2 className="text-light">Create an Inquiry</h2>
-      <form onSubmit={createInquiry}>
-        <label htmlFor="title" className="text-light">
-          Title:
-        </label>
-        <br />
-        <input
-          type="text"
-          id="title"
-          name="title"
-          required
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
-        <label htmlFor="title">Description:</label>
-        <br />
-        <textarea
-          name="content"
-          id="content"
-          required
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <br />
-        <input type="submit" value="Submit"></input>
-      </form>
-      <Footer />
     </div>
   );
 }

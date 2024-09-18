@@ -18,7 +18,9 @@ function NavBar() {
                 <Nav.Link to="/">
                   <Link to="/">HOME</Link>
                 </Nav.Link>
-                <Nav.Link href="#link">CARS</Nav.Link>
+                <Nav.Link to="/">
+                  <Link to="/">CARS</Link>
+                </Nav.Link>
                 <Nav.Link href="#link">OUR SERVICES</Nav.Link>
                 <Nav.Link href="#link">ABOUT</Nav.Link>
                 <Nav.Link href="#link">CONTACT US</Nav.Link>
