@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Carousel } from 'react-bootstrap';
+import api from "../api";
 import CarBreadcrumb from "../Components/Breadcrumb";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPhone, faEnvelope, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Navbar from "../Components/Navbar";
-import ImgCarousel from "../Components/ImgCarousel";
 import Footer from "./Footer"
 import TopBar from "../Components/TopBar";
+import LoadingIndicator from "../Components/LoadingIndicator";
+
 
 function CarDetails() {
+
+    const { id } = useParams(); // Get car ID from the URL
+    const [car, setCar] = useState(null); // state to hold car data
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeTab, setActiveTab] = useState("description");
+
+    useEffect(() => {
+        getCarDetails();
+    }, []);
+
+    // Event handlers for tab clicks
+    const showDescription = () => setActiveTab("description");
+    const showFeatures = () => setActiveTab("features");
+
+    //Image Carousel index set
+    const handleSelect = (index) => {
+        setActiveIndex(index);
+    };
+
+    //Fetch car details by ID
+    const getCarDetails = () => {
+        api
+            .get(`/api/cars/${id}/`)
+            .then((res) => setCar(res.data))
+            .catch((error) => console.error(error));
+    };
+
+    if (!car) {
+        return <div><LoadingIndicator /></div>
+    }
+
     return (
 
         <div className="container">
@@ -18,7 +53,7 @@ function CarDetails() {
                     <Navbar />
                 </div>
                 <div className="d-flex flex-column align-items-center pt-4">
-                    <h1 className="text-light">Honda Accord Sedan</h1>
+                    <h1 className="text-light">{car.car_title}</h1>
                     <CarBreadcrumb />
                 </div>
             </div>
@@ -27,17 +62,91 @@ function CarDetails() {
                     <div className="col-8">
                         <div className="d-flex justify-content-between w-100">
                             <div className="text-start flex-fill ">
-                                <p className="fw-bold"> Honda Accord Sedan</p>
-                                <p><FontAwesomeIcon icon={faMapMarker} /> Orlando</p>
+                                <p className="fw-bold"> {car.car_title}</p>
+                                <p><FontAwesomeIcon icon={faMapMarker} /> {car.city}</p>
                             </div>
-                            <div className="text-end flex-fill text-danger fw-bold">$15,000</div>
+                            <div className="text-end flex-fill text-danger fw-bold">${car.price}</div>
                         </div>
                         {/* Carousel pictures of the car */}
-                        <ImgCarousel />
+                        <div className="carousel-container">
+                            <Carousel activeIndex={activeIndex} onSelect={handleSelect} controls={false}>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src={car.car_photo}
+                                        alt="First slide"
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src={car.car_photo}
+                                        alt="Second slide"
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src={car.car_photo}
+                                        alt="Third slide"
+                                    />
+                                </Carousel.Item>
+                            </Carousel>
+                            <div className="carousel-thumbnails">
+                                <img
+                                    className="carousel-thumbnail"
+                                    src={car.car_photo}
+                                    alt="Thumbnail 1"
+                                    onClick={() => handleSelect(0)}
+                                />
+                                <img
+                                    className="carousel-thumbnail"
+                                    src={car.car_photo}
+                                    alt="Thumbnail 2"
+                                    onClick={() => handleSelect(1)}
+                                />
+                                <img
+                                    className="carousel-thumbnail"
+                                    src={car.car_photo}
+                                    alt="Thumbnail 3"
+                                    onClick={() => handleSelect(2)}
+                                />
+                            </div>
+                        </div>
+                        {/* Description and features tabs */}
                         <div>
-                            {/* need to include car description and car features */}
+                            <ul className="nav nav-tabs">
+                                <li className="nav-item">
+                                    <a className={`nav-link ${activeTab === "description" ? "active" : ""}`} aria-current="page" onClick={showDescription}>
+                                        Description
+                                    </a>
+                                </li>
+
+                                <li className="nav-item">
+                                    <a className={`nav-link ${activeTab === "features" ? "active" : ""}`} onClick={showFeatures}>
+                                        Features
+                                    </a>
+                                </li>
+                            </ul>
+                            {/* Tab Content */}
+                            <div className="mt-3">
+                                {activeTab === "description" && (
+                                    <div
+                                        className="card-text"
+                                        dangerouslySetInnerHTML={{ __html: car.description }}
+                                    />
+                                )}
+                                {activeTab === "features" && (
+                                    <ul>
+                                        {car.features.map((feature, index) => (
+                                            <li key={index}>{feature}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         </div>
                     </div>
+                    {/* Specs of the car */}
                     <div className="col-4 text-center">
                         <div className="border mb-4">
                             {/* text button */}
@@ -51,59 +160,59 @@ function CarDetails() {
                                     <tbody>
                                         <tr>
                                             <td className="text-start">Color</td>
-                                            <td className="text-end">Black</td>
+                                            <td className="text-end">{car.color}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Model</td>
-                                            <td className="text-end">Accord XL</td>
+                                            <td className="text-end">{car.model}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Year</td>
-                                            <td className="text-end">2020</td>
+                                            <td className="text-end">{car.year}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Condition</td>
-                                            <td className="text-end">Used</td>
+                                            <td className="text-end">{car.condition}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Body Style</td>
-                                            <td className="text-end">Sedan</td>
+                                            <td className="text-end">{car.body_style}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Engine</td>
-                                            <td className="text-end">turbochage- 6 cylinder</td>
+                                            <td className="text-end">{car.engine}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Transmission</td>
-                                            <td className="text-end">Automatic</td>
+                                            <td className="text-end">{car.transmission}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Interior</td>
-                                            <td className="text-end">Balck</td>
+                                            <td className="text-end">{car.interior}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Miles:</td>
-                                            <td className="text-end">85,000</td>
+                                            <td className="text-end">{car.miles}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Doors:</td>
-                                            <td className="text-end">4</td>
+                                            <td className="text-end">{car.doors}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Passengers</td>
-                                            <td className="text-end">5</td>
+                                            <td className="text-end">{car.passengers}</td>
                                         </tr>
                                         <tr>
-                                            <td className="text-start">Mileage:</td>
-                                            <td className="text-end">15</td>
+                                            <td className="text-start">MPG:</td>
+                                            <td className="text-end">{car.mileage}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Fuel Type:</td>
-                                            <td className="text-end">Petrol</td>
+                                            <td className="text-end">{car.fuel_type}</td>
                                         </tr>
                                         <tr>
                                             <td className="text-start">Owner:</td>
-                                            <td className="text-end">1</td>
+                                            <td className="text-end">{car.no_of_owners}</td>
                                         </tr>
                                     </tbody>
                                 </table>

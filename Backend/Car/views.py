@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
+from rest_framework.generics import RetrieveAPIView
 from .models import Car
 from .serializers import CarSerializer
 
@@ -9,6 +10,12 @@ from .serializers import CarSerializer
 #         return Car.objects.
 
 class CarListCreateView(generics.ListCreateAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+class CarDetailAPIView(RetrieveAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
     permission_classes = [permissions.AllowAny]

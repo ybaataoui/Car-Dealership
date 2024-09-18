@@ -27,7 +27,7 @@ const Home = () => {
       <div className="container mt-4">
         <div className="row">
           {cars.map(car => (
-            <div className="col-md-4 mb-4" key={car.id}>
+            <div className="col-md-3 mb-4" key={car.id}>
               <Car car={car} />  {/* Render CarItem for each car */}
             </div>
           ))}
