@@ -25,3 +25,15 @@ class UserInfoView(APIView):
         return Response({
             'username': user.username,
         })
+    
+# Check if the user is logged in
+class CheckUserLoggedInView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        # If the request reaches here, it means the user is authenticated
+        return Response({
+            'is_logged_in': True,
+            'username': request.user.username
+        })
+    

@@ -3,19 +3,18 @@ from django.contrib.auth.models import User
 
 
 class Inquiry(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    car_title = models.CharField(max_length=255)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    car_id = models.IntegerField()
-    customer_need = models.CharField(max_length=100)
-    car_title = models.CharField(max_length=100)
+    customer_need = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=100)
-    message = models.TextField(blank=True)
-    # user_id = models.IntegerField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="inquiries")
+    email = models.EmailField()
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True) #, auto_now_add=True
 
-    def __str__(self) -> str:
-        return self.email
+    def __str__(self):
+        return f"Inquiry from {self.first_name} {self.last_name} for {self.car_title}"
+

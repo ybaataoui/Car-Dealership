@@ -10,11 +10,11 @@ class InquiryListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Inquiry.objects.filter(author=user)
+        return Inquiry.objects.filter(customer=user)
     
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(author=self.request.user)
+            serializer.save(customer=self.request.user)
         else:
             print(serializer.errors)
 
@@ -25,4 +25,11 @@ class InquiryDelete(generics.DestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Inquiry.objects.filter(author=user)
+        return Inquiry.objects.filter(customer=user)
+    
+class CreateInquiryView(generics.CreateAPIView):
+    queryset = Inquiry.objects.all()
+    serializer_class = InquirySerializer
+    permission_classes = [IsAuthenticated]
+
+   

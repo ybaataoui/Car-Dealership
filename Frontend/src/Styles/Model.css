@@ -1,0 +1,134 @@
+/* Inquiry modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Background overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 700px;
+  max-width: 80%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex; /* Use flexbox to align items horizontally */
+  gap: 5px; /* Space between inputs */
+}
+
+.input-container input {
+  flex: 1; /* Make inputs take up equal space */
+  padding: 10px; /* Add some padding to make the inputs look nice */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+.specs {
+  background-color: #f8f9fa;
+}
+
+/* Basic modal styling */
+.modal-content {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Centering the logo */
+.modal-header img {
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+}
+
+/* Close button */
+.modal-header .close {
+  font-size: 1.5rem;
+  color: #000;
+  opacity: 0.8;
+}
+
+.form-container {
+  width: 100%; /* This makes the form take up 100% of the modal width */
+  max-width: 600px; /* You can adjust this to limit the maximum width */
+  margin: 0 auto; /* Center the form inside the modal */
+}
+
+/* Adjust form inputs to take up more width */
+.form-control {
+  width: 100%; /* Inputs will take full width */
+}
+
+/* Spacing between form elements */
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+/* Input fields */
+.form-control {
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* Styling for labels */
+label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Textarea for additional messages */
+textarea.form-control {
+  resize: none;
+  height: 80px;
+}
+
+/* Button styling */
+.btn-dark {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-dark:hover {
+  background-color: #23272b;
+}
+
+/* Styling for the modal submit button */
+.btn-block {
+  width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 576px) {
+  .row {
+    flex-direction: column;
+  }
+}
