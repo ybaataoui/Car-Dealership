@@ -7,12 +7,17 @@ import NavBar from "../Components/Navbar";
 import TopBar from "../Components/TopBar";
 import Footer from "../Pages/Footer";
 import LoadingIndicator from "../Components/LoadingIndicator";
+import { useLocation } from "react-router-dom";
 
 function Dashboard() {
   const [inquiries, setInquiries] = useState([]);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
+  const location = useLocation();
+  const carID = location.state?.carID
+
+  console.log(carID)
 
   useEffect(() => {
     getUserInfo();
@@ -32,6 +37,7 @@ function Dashboard() {
     try {
       const res = await api.get("/api/dashboard/");
       setInquiries(res.data);
+      console.log(`View details for carID: ${carID}`);
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +69,7 @@ function Dashboard() {
           )}
         </div>
         <h2 className=""> Inquiries</h2>
+
         <table class="table">
           <thead>
             <tr>
@@ -74,12 +81,16 @@ function Dashboard() {
           </thead>
 
           {inquiries.map((inquiry) => (
+
             <Inquiry
               inquiry={inquiry}
+              carID={carID}
               onDelete={deleteInquiry}
               key={inquiry.id}
             />
+
           ))}
+
         </table>
       </div>
       <Footer />

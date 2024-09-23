@@ -5,7 +5,7 @@ import "../Styles/Model.css";
 import logo from "../assets/logo-dark.png";
 import api from "../api";
 
-function InquiryModal({ show, handleClose, user, carTitle }) {
+function InquiryModal({ show, handleClose, user, carTitle, carID }) {
   // State to manage form input values
   const [firstName, setFirstName] = useState(user || "");
   const [lastName, setLastName] = useState(user || "");
@@ -17,12 +17,14 @@ function InquiryModal({ show, handleClose, user, carTitle }) {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+
   // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const inquiryData = {
       user_id: user?.id || null,
+      car_id: carID,
       car_title: carTitle,
       first_name: firstName,
       last_name: lastName,
@@ -43,7 +45,8 @@ function InquiryModal({ show, handleClose, user, carTitle }) {
       // Log the response or handle it
       console.log("Response: ", res.data);
       alert("Form submitted successfully!");
-      navigate("/dashboard");
+      navigate("/dashboard/", { state: { carID: carID } });
+
     } catch (error) {
       // Display error in case of failure
       console.error("There was an error submitting the form:", error);

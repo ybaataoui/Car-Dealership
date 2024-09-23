@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Car = ({ car }) => {
+
     return (
         <div className="card" style={{ width: '19rem', height: '25rem' }} key={car.id}>
             {/* Make the image clickable */}
