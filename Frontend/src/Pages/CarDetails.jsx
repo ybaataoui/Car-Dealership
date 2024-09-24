@@ -33,8 +33,6 @@ function CarDetails() {
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-
   useEffect(() => {
     getCarDetails();
     getUserInfo();
@@ -174,8 +172,9 @@ function CarDetails() {
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "description" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "description" ? "active" : ""
+                    }`}
                     aria-current="page"
                     onClick={showDescription}
                   >
@@ -185,8 +184,9 @@ function CarDetails() {
 
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "features" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "features" ? "active" : ""
+                    }`}
                     onClick={showFeatures}
                   >
                     Features
@@ -228,8 +228,8 @@ function CarDetails() {
                   show={showModel}
                   handleClose={() => setShowModel(false)}
                   user={username}
-                  carTitle={`${car.car_title} ${car.model}`}
-                  carID={id}
+                  // carTitle={`${car.car_title} ${car.model}`}
+                  car={car}
                 />
               )}
               <h3 className="text-start mt-4 ms-3">Car Specs</h3>

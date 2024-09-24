@@ -5,11 +5,12 @@ import "../Styles/Model.css";
 import logo from "../assets/logo-dark.png";
 import api from "../api";
 
-function InquiryModal({ show, handleClose, user, carTitle, carID }) {
+function InquiryModal({ show, handleClose, user, car }) {
   // State to manage form input values
   const [firstName, setFirstName] = useState(user || "");
   const [lastName, setLastName] = useState(user || "");
   const [customerNeed, setCustomerNeed] = useState("I'm interested in this");
+  const [carName, setCarName] = useState(car.car_title || "");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState(user?.email || "");
@@ -17,15 +18,16 @@ function InquiryModal({ show, handleClose, user, carTitle, carID }) {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  // console.log(car);
 
   // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const inquiryData = {
-      user_id: user?.id || null,
-      car_id: carID,
-      car_title: carTitle,
+      // user_id: user?.id || null,
+      // car_id: carID,
+      car_id: car.id,
       first_name: firstName,
       last_name: lastName,
       customer_need: customerNeed,
@@ -45,8 +47,8 @@ function InquiryModal({ show, handleClose, user, carTitle, carID }) {
       // Log the response or handle it
       console.log("Response: ", res.data);
       alert("Form submitted successfully!");
-      navigate("/dashboard/", { state: { carID: carID } });
 
+      navigate("/dashboard");
     } catch (error) {
       // Display error in case of failure
       console.error("There was an error submitting the form:", error);
@@ -72,7 +74,7 @@ function InquiryModal({ show, handleClose, user, carTitle, carID }) {
                   type="text"
                   className="form-control"
                   placeholder="First Name"
-                  value={user}
+                  value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
                 />
@@ -82,7 +84,7 @@ function InquiryModal({ show, handleClose, user, carTitle, carID }) {
                   type="text"
                   className="form-control"
                   placeholder="Last Name"
-                  value={user}
+                  value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
                 />
@@ -126,7 +128,8 @@ function InquiryModal({ show, handleClose, user, carTitle, carID }) {
             <input
               type="text"
               className="form-control"
-              value={carTitle}
+              value={car.car_title}
+              // onChange={(e) => setCarName(e.target.value)}
               readOnly
             />
           </div>

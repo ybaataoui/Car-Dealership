@@ -8,4 +8,4 @@ class InquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inquiry
         fields = '__all__'
-        extra_kwargs = {"customer": {"read_only": True}} #we accept author when we create
+        extra_kwargs = {"customer": {"read_only": True}} #we accept author when we create, "car": {"read_only": True}

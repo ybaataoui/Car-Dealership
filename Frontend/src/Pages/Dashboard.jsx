@@ -14,10 +14,11 @@ function Dashboard() {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
-  const location = useLocation();
-  const carID = location.state?.carID
 
-  console.log(carID)
+  const location = useLocation();
+  const carID = location.state?.carID; // Safely access carID
+
+  console.log("Received carID: ", carID);
 
   useEffect(() => {
     getUserInfo();
@@ -81,16 +82,13 @@ function Dashboard() {
           </thead>
 
           {inquiries.map((inquiry) => (
-
             <Inquiry
               inquiry={inquiry}
               carID={carID}
               onDelete={deleteInquiry}
               key={inquiry.id}
             />
-
           ))}
-
         </table>
       </div>
       <Footer />

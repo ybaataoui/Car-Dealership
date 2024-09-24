@@ -2,6 +2,8 @@ from rest_framework import generics
 from .serializers import  InquirySerializer
 from rest_framework.permissions import IsAuthenticated
 from .models import Inquiry
+from Car.models import Car
+import logging
 
 #Create a list of inquiries
 class InquiryListCreate(generics.ListCreateAPIView):
@@ -26,10 +28,16 @@ class InquiryDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Inquiry.objects.filter(customer=user)
-    
+
+logger = logging.getLogger(__name__)    
 class CreateInquiryView(generics.CreateAPIView):
     queryset = Inquiry.objects.all()
     serializer_class = InquirySerializer
     permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        logger.info("Incoming data: %s", self.request.data)
+        serializer.save(customer=self.request.user)
+
 
    
