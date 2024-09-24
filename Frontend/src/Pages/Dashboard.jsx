@@ -60,7 +60,7 @@ function Dashboard() {
       <TopBar />
       <NavBar />
       <div className="bg-light p-2">
-        <div className="text text-center pt-4">
+        <div className="text  pt-4 pb-4">
           {username ? (
             <h2>Welcome, {username} !</h2>
           ) : (
@@ -69,15 +69,16 @@ function Dashboard() {
             </h2>
           )}
         </div>
-        <h2 className=""> Inquiries</h2>
+        <h2 className=""> </h2>
 
-        <table class="table">
+        <table class="table table-striped table-hover">
           <thead>
-            <tr>
+            <tr >
               <th scope="col">#</th>
               <th scope="col">Car Name</th>
               <th scope="col">Location</th>
-              <th scope="col">Action</th>
+              <th scope="col">View Car</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
 

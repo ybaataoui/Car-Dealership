@@ -32,6 +32,7 @@ function Inquiry({ inquiry, onDelete }) {
         <td>{inquiry.city}</td>
         <td>
           <button
+            className="btn btn-primary"
             onClick={() => {
               navigate(`/details/${inquiry.car}`);
             }}
