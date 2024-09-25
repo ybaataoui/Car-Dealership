@@ -114,7 +114,7 @@ function CarDetails() {
                 </p>
               </div>
               <div className="text-end flex-fill text-danger fw-bold">
-                ${car.price}
+                ${car.price.toLocaleString()}
               </div>
             </div>
             {/* Carousel pictures of the car */}
@@ -172,9 +172,8 @@ function CarDetails() {
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${
-                      activeTab === "description" ? "active" : ""
-                    }`}
+                    className={`nav-link ${activeTab === "description" ? "active" : ""
+                      }`}
                     aria-current="page"
                     onClick={showDescription}
                   >
@@ -184,9 +183,8 @@ function CarDetails() {
 
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${
-                      activeTab === "features" ? "active" : ""
-                    }`}
+                    className={`nav-link ${activeTab === "features" ? "active" : ""
+                      }`}
                     onClick={showFeatures}
                   >
                     Features

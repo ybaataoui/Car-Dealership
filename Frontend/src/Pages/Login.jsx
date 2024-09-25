@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <>
-      <div className="">
+      <div className="container">
         <TopBar />
         <NavBar />
         <div className="navBar py-3 mb-4 ">

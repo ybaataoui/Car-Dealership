@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import logo from "../assets/logo.png";
 function NavBar() {
   return (
@@ -26,7 +28,7 @@ function NavBar() {
                   <Link to="/about">ABOUT US</Link>
                 </Nav.Link>
                 <Nav.Link href="#link">CONTACT US</Nav.Link>
-                <Nav.Link href="#link">Search</Nav.Link>
+                <Nav.Link href="#link"><FontAwesomeIcon icon={faSearch} /></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

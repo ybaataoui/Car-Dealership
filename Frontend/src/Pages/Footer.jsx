@@ -18,7 +18,7 @@ function Footer() {
           <div className="row align-items-center">
             <div className="col-lg-8">
               <p className="copy mb-0">
-                © {currentYear} Copyright: - www.youssefcar.com
+                © {currentYear} Copyright: - www.youssef-family-car.com
               </p>
             </div>
             <div className="col-lg-4 text-end">

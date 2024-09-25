@@ -9,8 +9,8 @@ function Header() {
     <div className="container">
       <TopBar />
       <NavBar />
-      <HomeCarousel />
-      <Searchbar />
+      {/* <HomeCarousel /> */}
+      {/* <Searchbar /> */}
     </div>
   );
 }

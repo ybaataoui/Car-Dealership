@@ -39,7 +39,7 @@ const Car = ({ car }) => {
       <div className="card-footer">
         <div className="d-flex justify-content-between">
           <div className="text-start flex-fill text-danger">{car.model}</div>
-          <div className="text-end flex-fill text-danger">${car.price}</div>
+          <div className="text-end flex-fill text-danger">${car.price.toLocaleString()}</div>
         </div>
       </div>
     </div>

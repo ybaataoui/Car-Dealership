@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap"; // Assuming you're using react-bootstrap
-import "../Styles/Model.css";
+// import "../Styles/Model.css";
 import logo from "../assets/logo-dark.png";
 import api from "../api";
 
@@ -10,7 +10,6 @@ function InquiryModal({ show, handleClose, user, car }) {
   const [firstName, setFirstName] = useState(user || "");
   const [lastName, setLastName] = useState(user || "");
   const [customerNeed, setCustomerNeed] = useState("I'm interested in this");
-  const [carName, setCarName] = useState(car.car_title || "");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [email, setEmail] = useState(user?.email || "");
@@ -25,8 +24,6 @@ function InquiryModal({ show, handleClose, user, car }) {
     e.preventDefault();
 
     const inquiryData = {
-      // user_id: user?.id || null,
-      // car_id: carID,
       car_id: car.id,
       first_name: firstName,
       last_name: lastName,
@@ -39,25 +36,22 @@ function InquiryModal({ show, handleClose, user, car }) {
     };
 
     console.log("Inquiry Data: ", inquiryData);
-    // Handle form submission logic here, e.g., send to API
-    // api.post('/your-api-endpoint', inquiryData).then(response => console.log(response));
     try {
       const res = await api.post("/api/inquiries/", inquiryData);
 
-      // Log the response or handle it
+      // Log the response
       console.log("Response: ", res.data);
       alert("Form submitted successfully!");
 
       navigate("/dashboard");
     } catch (error) {
-      // Display error in case of failure
       console.error("There was an error submitting the form:", error);
       alert("Failed to submit the form. Please try again.");
     }
   };
 
   return (
-    <Modal show={show} onHide={handleClose} size="lg">
+    <Modal show={show} onHide={handleClose} size="lg" >
       <Modal.Header closeButton>
         <Modal.Title>
           <img src={logo} alt="Car Dealer Logo" style={{ width: "150px" }} />

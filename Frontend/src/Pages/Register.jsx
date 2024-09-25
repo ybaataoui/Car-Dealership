@@ -8,7 +8,7 @@ import RegisterForm from "../Components/RegisterForm";
 function Register() {
   return (
     <>
-      <div>
+      <div className="container">
         <TopBar />
         <NavBar />
         <div className="navBar py-3 mb-4">
