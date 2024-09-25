@@ -129,7 +129,7 @@ function InquiryModal({ show, handleClose, user, car }) {
               type="text"
               className="form-control"
               value={car.car_title}
-              // onChange={(e) => setCarName(e.target.value)}
+              required
               readOnly
             />
           </div>

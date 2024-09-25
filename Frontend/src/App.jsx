@@ -8,6 +8,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import CarDetails from "./Pages/CarDetails";
 import Dashboard from "./Pages/Dashboard";
 import NewInquiry from "./Pages/NewInquiry";
+import AboutUs from "./Pages/About";
 
 function Logout() {
   localStorage.clear();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

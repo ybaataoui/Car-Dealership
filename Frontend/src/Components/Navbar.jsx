@@ -22,7 +22,9 @@ function NavBar() {
                   <Link to="/">CARS</Link>
                 </Nav.Link>
                 <Nav.Link href="#link">OUR SERVICES</Nav.Link>
-                <Nav.Link href="#link">ABOUT</Nav.Link>
+                <Nav.Link href="#link">
+                  <Link to="/about">ABOUT US</Link>
+                </Nav.Link>
                 <Nav.Link href="#link">CONTACT US</Nav.Link>
                 <Nav.Link href="#link">Search</Nav.Link>
               </Nav>

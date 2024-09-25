@@ -14,7 +14,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("api/userinfo/", UserInfoView.as_view(), name="user-info"),
     path("api/check-user-logged-in/", CheckUserLoggedInView.as_view(), name="check-user-logged-in"),
-    path("api/inquiries/", CreateInquiryView.as_view(), name="create-inquiry"),
+    path("api/inquiries/", CreateInquiryView, name="create-inquiry"),
     path("api/", include("inquiries.urls")),
     path("api/", include("Car.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #this line is for sotoring pictures locally

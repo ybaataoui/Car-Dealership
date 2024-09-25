@@ -5,7 +5,7 @@ from Car.models import Car
 
 class Inquiry(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, null=False)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
     # car_title = models.CharField(max_length=255)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

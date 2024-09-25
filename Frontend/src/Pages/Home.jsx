@@ -8,8 +8,6 @@ import Car from "../Components/Car";
 const Home = () => {
   const [cars, setCars] = useState([]);
 
-
-
   // Fetch the list of cars when the component mounts
   useEffect(() => {
     fetchCars();
@@ -27,15 +25,16 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Header />
-      <div className="container mt-4">
-        <div className="row">
+      <div className=" mt-4">
+        <div className="row flex-wrap">
           {cars.map((car) => (
-
-            <div className="col-md-3 mb-4" key={car.id}>
+            <div
+              className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+              key={car.id}
+            >
               <Car car={car} /> {/* Render each car */}
-
             </div>
           ))}
         </div>

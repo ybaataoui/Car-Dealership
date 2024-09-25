@@ -7,6 +7,7 @@ import NavBar from "../Components/Navbar";
 import TopBar from "../Components/TopBar";
 import Footer from "../Pages/Footer";
 import LoadingIndicator from "../Components/LoadingIndicator";
+import CompanyInfromation from "./CompanyInformation";
 import { useLocation } from "react-router-dom";
 
 function Dashboard() {
@@ -60,20 +61,23 @@ function Dashboard() {
       <TopBar />
       <NavBar />
       <div className="bg-light p-2">
-        <div className="text  pt-4 pb-4">
+        <div className="text  pt-4 pb-4 text-danger fw-bold">
           {username ? (
-            <h2>Welcome, {username} !</h2>
+            <h1>Welcome, {username} !</h1>
           ) : (
             <h2 className="text-center">
               <LoadingIndicator />
             </h2>
           )}
         </div>
-        <h2 className=""> </h2>
+        <h4 className="text pb-4">
+          {" "}
+          Here are the list of the cars that you have inquired about:
+        </h4>
 
         <table class="table table-striped table-hover">
           <thead>
-            <tr >
+            <tr>
               <th scope="col">#</th>
               <th scope="col">Car Name</th>
               <th scope="col">Location</th>
@@ -92,6 +96,7 @@ function Dashboard() {
           ))}
         </table>
       </div>
+      <CompanyInfromation />
       <Footer />
     </div>
   );

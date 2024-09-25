@@ -27,7 +27,7 @@ function Inquiry({ inquiry, onDelete }) {
   return (
     <tbody>
       <tr>
-        <td></td>
+        <td>{inquiry.id}</td>
         <td>{car}</td>
         <td>{inquiry.city}</td>
         <td>
