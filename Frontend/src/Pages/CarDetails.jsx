@@ -172,8 +172,9 @@ function CarDetails() {
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "description" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "description" ? "active" : ""
+                    }`}
                     aria-current="page"
                     onClick={showDescription}
                   >
@@ -183,8 +184,9 @@ function CarDetails() {
 
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "features" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "features" ? "active" : ""
+                    }`}
                     onClick={showFeatures}
                   >
                     Features
@@ -312,7 +314,7 @@ function CarDetails() {
                   </p>
                   <p>
                     <FontAwesomeIcon icon={faPhone} className="text-danger" /> +
-                    01 234 567 88
+                    1 407 555 5555
                   </p>
                 </div>
                 <div className="">

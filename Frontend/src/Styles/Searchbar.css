@@ -1,0 +1,72 @@
+/* Custom styles for the Searchbar to match the black theme */
+.searchbar-container {
+  background-color: #1b1b1b; /* Dark background to match the theme */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Dropdown Buttons */
+.btn-search {
+  color: white; /* White text */
+  background-color: #333; /* Darker background for buttons */
+  border-color: #555; /* Button borders */
+}
+
+.btn-search:hover,
+.btn-search:focus {
+  background-color: #444; /* Slightly lighter background on hover */
+  border-color: #777; /* Adjust border color on hover */
+}
+
+/* Input field */
+.zip-input-dark {
+  background-color: #222; /* Dark background for input field */
+  color: #fff; /* White text */
+  border: 1px solid #555; /* Border matching dark theme */
+}
+
+.zip-input-dark::placeholder {
+  color: #aaa; /* Lighter text for placeholder */
+}
+
+/* Show Results button */
+.btn-danger {
+  background-color: #d9534f; /* Red button */
+  border-color: #d43f3a;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #c9302c; /* Slightly darker red on hover */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background-color: #333; /* Dark background for dropdown */
+  color: white;
+  border: 1px solid #555;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #444;
+  color: white;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .searchbar-wrap {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-search,
+  .zip-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

@@ -12,7 +12,7 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer  text-light py-4">
+    <footer className="footer text-light py-4">
       <div className="sub-footer">
         <div className="container">
           <div className="row align-items-center">

@@ -9,6 +9,8 @@ import CarDetails from "./Pages/CarDetails";
 import Dashboard from "./Pages/Dashboard";
 import NewInquiry from "./Pages/NewInquiry";
 import AboutUs from "./Pages/About";
+import ContactUs from "./Pages/Contact";
+import Services from "./Pages/Services";
 
 function Logout() {
   localStorage.clear();
@@ -40,6 +42,8 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -7,9 +7,30 @@ import car6 from "../assets/Car-6.jpg";
 import car7 from "../assets/Car-7.jpg";
 
 const carouselItems = [
-  { id: 1, src: car4, alt: "First slide - Car Model 1" },
-  { id: 2, src: car6, alt: "Second slide - Car Model 2" },
-  { id: 3, src: car7, alt: "Third slide - Car Model 3" },
+  {
+    id: 1,
+    src: car4,
+    alt: "First slide - Car Model 1",
+    caption: "Drive Your Own Dreams",
+    description:
+      "This is a great car for city driving. <br/> Enjoy your dream ride!.",
+  },
+  {
+    id: 2,
+    src: car6,
+    alt: "Second slide - Car Model 2",
+    caption: "Fuel for Soul",
+    description:
+      "Our cars offer unparalleled performance. <br> Don’t miss out!",
+  },
+  {
+    id: 3,
+    src: car7,
+    alt: "Third slide - Car Model 3",
+    caption: "Car for Everyone",
+    description:
+      "Allow us to guide you through the innovative stress <br/> free approach in finding your dream car.",
+  },
 ];
 
 const HomeCarousel = () => {
@@ -24,6 +45,13 @@ const HomeCarousel = () => {
                 src={item.src}
                 alt={item.alt}
               />
+              <Carousel.Caption className="carousel-caption">
+                <h3>{item.caption}</h3>
+                <p dangerouslySetInnerHTML={{ __html: item.description }}></p>
+                <a href="" class="btn btn-lg btn-primary">
+                  Read More
+                </a>
+              </Carousel.Caption>
             </div>
           </Carousel.Item>
         ))}

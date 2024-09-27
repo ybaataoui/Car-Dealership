@@ -5,10 +5,10 @@ import { faHome, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const CompanyInformation = () => {
   return (
-    <div className="container my-5">
+    <div className="container pb-2">
       <div className="text-center text-lg-start text-white">
         {/* Grid container */}
-        <div className="container p-4 pb-0">
+        <div className="container  pb-0">
           <hr className="my-3" />
           {/* Section: Links */}
           <section>
@@ -83,7 +83,7 @@ const CompanyInformation = () => {
                   <FontAwesomeIcon icon={faEnvelope} /> info@gmail.com
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faPhone} /> + 01 234 567 88
+                  <FontAwesomeIcon icon={faPhone} /> + 1 407 555 5555
                 </p>
               </div>
             </div>

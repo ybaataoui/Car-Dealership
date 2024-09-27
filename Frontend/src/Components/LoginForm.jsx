@@ -4,15 +4,12 @@ import LoadingIndicator from "../Components/LoadingIndicator";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import api from "../api";
 import logo from "../assets/logo-dark.png";
-import "../Styles/Bar.css";
 
 function LoginForm({ route, method }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  //const name = method === "login" ? "Login" : "Register";
 
   const handleLogin = async (e) => {
     setLoading(true);
@@ -39,9 +36,9 @@ function LoginForm({ route, method }) {
       <div className="contact-section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 col-md-8">
               <div className="form-section card p-4 shadow-sm">
-                <div className=" text-center mb-1">
+                <div className="text-center mb-3">
                   <a href="/">
                     <img src={logo} alt="logo" className="img-fluid" />
                   </a>
@@ -49,7 +46,7 @@ function LoginForm({ route, method }) {
                 <h3 className="text-center mb-4">Customer Login Panel</h3>
 
                 <form onSubmit={handleLogin}>
-                  <div className="form-group ">
+                  <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input
                       type="text"
@@ -60,12 +57,12 @@ function LoginForm({ route, method }) {
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
-                  <div className="form-group ">
+                  <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       name="password"
-                      className="form-control-lg"
+                      className="form-control"
                       placeholder="Enter password"
                       required
                       onChange={(e) => setPassword(e.target.value)}
@@ -73,10 +70,7 @@ function LoginForm({ route, method }) {
                   </div>
                   <div className="form-group text-center">
                     {loading && <LoadingIndicator />}
-                    <button
-                      type="submit"
-                      className="btn btn-success  btn-block"
-                    >
+                    <button type="submit" className="btn btn-success btn-block">
                       Login
                     </button>
                   </div>

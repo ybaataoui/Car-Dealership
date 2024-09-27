@@ -31,3 +31,16 @@
   transform: scale(1.05); /* Slight zoom effect on hover */
   border-color: #007bff; /* Change border color on hover */
 }
+
+.carousel-item-wrapper {
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 400px; /* Adjust based on your preference */
+  left: 25%;
+  transform: translateX(-50%);
+  color: white; /* or any contrasting color */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Optional: adds a shadow for better readability */
+}

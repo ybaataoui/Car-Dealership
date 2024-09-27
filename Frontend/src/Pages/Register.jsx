@@ -11,7 +11,7 @@ function Register() {
       <div className="container">
         <TopBar />
         <NavBar />
-        <div className="navBar py-3 mb-4">
+        <div className="py-3 mb-4">
           <div className="breadcrumb-area ">
             <div className="breadcrumb-areas">
               <h1 className="text-center text-light">Register</h1>
@@ -23,7 +23,7 @@ function Register() {
               </ul>
             </div>
           </div>
-          <RegisterForm route="/api/user/register/" method="register" />;
+          <RegisterForm route="/api/user/register/" method="register" />
           <Footer />
         </div>
       </div>

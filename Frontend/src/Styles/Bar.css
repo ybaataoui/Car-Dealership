@@ -1,7 +1,16 @@
-.navBar {
-  background-color: rgb(11, 11, 11)";
+.footer {
+  background-color: rgb(12, 38, 114);
 }
 
-.topBar {
-    background-color: rgb(11, 11, 11);
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ddd; /* Optional hover effect */
+}
+
+/* Button hover effects */
+.btn-secondary:hover {
+  background-color: #555; /* Change button color on hover */
 }

@@ -12,8 +12,6 @@ import { useLocation } from "react-router-dom";
 
 function Dashboard() {
   const [inquiries, setInquiries] = useState([]);
-  const [description, setDescription] = useState("");
-  const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
 
   const location = useLocation();
@@ -70,10 +68,17 @@ function Dashboard() {
             </h2>
           )}
         </div>
-        <h4 className="text pb-4">
-          {" "}
-          Here are the list of the cars that you have inquired about:
-        </h4>
+        <div className="text pb-4">
+          {!inquiries || inquiries.length === 0 ? (
+            <div className="alert alert-warning" role="alert">
+              You have not requested any inquiries yet!
+            </div>
+          ) : (
+            <div className="alert alert-info" role="alert">
+              Here is the list of the cars that you have inquired about:
+            </div>
+          )}
+        </div>
 
         <table class="table table-striped table-hover">
           <thead>
@@ -85,7 +90,6 @@ function Dashboard() {
               <th scope="col">Delete</th>
             </tr>
           </thead>
-
           {inquiries.map((inquiry) => (
             <Inquiry
               inquiry={inquiry}

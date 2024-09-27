@@ -1,0 +1,56 @@
+/* Services Section */
+.services {
+  background-color: #111; /* Dark background */
+  padding: 50px 0;
+  color: #fff;
+}
+
+.main-title h1 {
+  color: #fff;
+}
+
+.main-title h1 span {
+  color: #00aaff; /* Accent color */
+}
+
+.main-title p {
+  color: #aaa;
+}
+
+.service-info {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.service-info:hover {
+  transform: translateY(-10px);
+  background-color: #333;
+}
+
+.service-info .number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00aaff; /* Number accent color */
+}
+
+.service-info .icon {
+  font-size: 2rem;
+  color: #00aaff; /* Icon accent color */
+  margin-bottom: 10px;
+}
+
+.service-info h3 {
+  color: #fff;
+}
+
+.service-info p {
+  color: #ccc;
+}
+
+/* Hover effect */
+.service-info:hover h3 {
+  color: #00aaff;
+}

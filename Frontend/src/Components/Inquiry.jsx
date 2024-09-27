@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Inquiry.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api";
 
 function Inquiry({ inquiry, onDelete }) {

@@ -7,7 +7,7 @@ import TopBar from "../Components/TopBar";
 import api from "../api";
 import Car from "../Components/Car";
 import "../Styles/Header.css";
-import bgImage from "../assets/bg-img-6.jpg"
+import bgImage from "../assets/bg-img-6.jpg";
 
 const Home = () => {
   const [cars, setCars] = useState([]);
@@ -36,46 +36,68 @@ const Home = () => {
   };
 
   return (
-    <div className="container" style={backgroundStyle}>
+    <div className="container " style={backgroundStyle}>
       <TopBar />
       <NavBar />
       <HomeCarousel />
       <div className="d-flex searchbar-wrap mt-4">
-
         {/* Make Dropdown */}
         <div className="btn-group m-2 btn-search">
-          <button className="btn btn-dark  custom-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button
+            className="btn btn-dark  custom-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Make
           </button>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Acura</a></li>
-            <li><a className="dropdown-item" href="#">Honda</a></li>
+            <li>
+              <a className="dropdown-item" href="#">
+                Acura
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="#">
+                Honda
+              </a>
+            </li>
           </ul>
         </div>
 
         {/* Model Dropdown */}
         <div className="btn-group m-2 btn-search">
-          <button className="btn btn-dark btn-lg custom-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button
+            className="btn btn-dark btn-lg custom-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Model
           </button>
-          <ul className="dropdown-menu">
-            {/* Add your models here */}
-          </ul>
+          <ul className="dropdown-menu">{/* Add your models here */}</ul>
         </div>
 
         {/* Distance Dropdown */}
         <div className="btn-group m-2 btn-search">
-          <button className="btn btn-dark custom-btn btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button
+            className="btn btn-dark custom-btn btn-lg dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Distance
           </button>
-          <ul className="dropdown-menu">
-            {/* Add distance options here */}
-          </ul>
+          <ul className="dropdown-menu">{/* Add distance options here */}</ul>
         </div>
 
         {/* Zip Code Input */}
         <div className="m-2 zip-input">
-          <input type="text" className="form-control form-control-lg" placeholder="Zip Code" />
+          <input
+            type="text"
+            className="form-control form-control-lg"
+            placeholder="Zip Code"
+          />
         </div>
 
         {/* Show Results Button */}

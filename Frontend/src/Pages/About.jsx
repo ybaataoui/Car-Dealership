@@ -8,7 +8,7 @@ import car3 from "../assets/car-3.jpg";
 
 import TopBar from "../Components/TopBar";
 import NavBar from "../Components/Navbar";
-import Footer from "./Footer"
+import Footer from "./Footer";
 import "../Styles/AboutUs.css"; // Custom CSS for additional styling
 
 const AboutUs = () => {
@@ -24,32 +24,36 @@ const AboutUs = () => {
       <NavBar />
 
       {/* Sub Banner */}
-      <div className="sub-banner text-center text-white">
+      <div className="sub-banner text-center ">
         <div className="text-center">
           <h1>About Us</h1>
           <Breadcrumb className="custom-breadcrumb ">
-            <Breadcrumb.Item className=""
+            <Breadcrumb.Item
+              className=""
               linkAs={Link}
               linkProps={{ to: "/" }}
-              style={{ color: 'white' }}>
+              style={{ color: "white" }}
+            >
               Home
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              About Us
-            </Breadcrumb.Item>
+            <Breadcrumb.Item active>About Us</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
 
       {/* About Car Section */}
-      <div className="about-car content-area-5 py-5 bg-light">
+      <div className="about-car content-area-5 py-5 bg-dark">
         <div className="container">
           <div className="row">
-
             {/* Carousel Section */}
             <div className="col-xl-5 col-lg-6">
               <div className="about-car-photo">
-                <Carousel id="carDetailsSlider" className="car-details-sliders shadow-sm" interval={3000} fade>
+                <Carousel
+                  id="carDetailsSlider"
+                  className="car-details-sliders shadow-sm"
+                  interval={3000}
+                  fade
+                >
                   {carouselItems.map((item) => (
                     <Carousel.Item key={item.id}>
                       <img
@@ -62,7 +66,7 @@ const AboutUs = () => {
                 </Carousel>
 
                 {/* Carousel Indicators */}
-                <ul className="carousel-indicators car-properties list-inline nav nav-justified ">
+                <ul className="carousel-indicators  list-inline ">
                   {carouselItems.map((item, index) => (
                     <li className="list-inline-item" key={index}>
                       <a
@@ -83,14 +87,26 @@ const AboutUs = () => {
             </div>
 
             {/* Text Section */}
-            <div className="col-xl-7 col-lg-6 align-self-center">
+            <div className="col-xl-7 col-lg-6 align-self-center pb-4">
               <div className="best-used-car">
-                <h3 className="text-primary">Welcome to <span className="text-dark">Youssef-Family-Car Website</span></h3>
-                <p className="lead">
-                  At Youssef-Family-Car, we pride ourselves on delivering high-quality vehicles to customers who seek both reliability and style. For over a decade, we've been helping drivers find the perfect car, whether it's a dependable family vehicle or a high-performance sports car. Our commitment to customer satisfaction, transparency, and providing exceptional value has earned us a reputation as a trusted name in the automotive industry.
+                <h3 className="text-primary">
+                  Welcome to{" "}
+                  <span className="text-light">Youssef-Family-Car Website</span>
+                </h3>
+                <p className="lead text-light">
+                  At Youssef-Family-Car, we pride ourselves on delivering
+                  high-quality vehicles to customers who seek both reliability
+                  and style. For over a decade, we've been helping drivers find
+                  the perfect car, whether it's a dependable family vehicle or a
+                  high-performance sports car. Our commitment to customer
+                  satisfaction, transparency, and providing exceptional value
+                  has earned us a reputation as a trusted name in the automotive
+                  industry.
                 </p>
-                <p className="mb-0">
-                  Over the years, we've adapted to changing technologies while maintaining our commitment to quality and service, becoming a trusted choice for car buyers.
+                <p className="mb-0 text-light">
+                  Over the years, we've adapted to changing technologies while
+                  maintaining our commitment to quality and service, becoming a
+                  trusted choice for car buyers.
                 </p>
               </div>
             </div>
