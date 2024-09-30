@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     'ckeditor',
+    'dal',
+    'dal_select2',
     
     
 ]

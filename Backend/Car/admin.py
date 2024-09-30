@@ -1,9 +1,25 @@
 from django.contrib import admin
-from .models import Car
+from django.db.models.fields.related import ForeignKey
+from django.http import HttpRequest
+from .models import Car, Make, CarModel
 from django.utils.html import format_html
+from django import forms
+from dal import autocomplete
 
+class CarAdminForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = '__all__'
+        widgets = {
+            'make' : autocomplete.ModelSelect2(url='make-autocomplete'),
+            'model' : autocomplete.ModelSelect2(url='carmodel-autocomplete', forward=['make']),
+        }
+
+    
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
+    form = CarAdminForm
+
     @admin.display(description='Car Image')
     def thumbnail(self, obj):
         if obj.car_photo:
@@ -16,3 +32,14 @@ class CarAdmin(admin.ModelAdmin):
     list_editable = ('is_featured',)
     search_fields = ('id', 'model', 'body_style', 'fuel_type')
     list_filter = ('city', 'model', 'body_style', 'fuel_type', 'year')
+
+
+class CarModelInline(admin.TabularInline):
+    model = CarModel
+    extra = 1
+
+class MakeAdmin(admin.ModelAdmin):
+    inlines = [CarModelInline]
+
+admin.site.register(Make, MakeAdmin)
+

@@ -4,6 +4,21 @@ from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
 
 
+class Make(models.Model):
+
+    name = models.CharField(max_length=100)
+    
+    def __str__(self) -> str:
+        return self.name
+    
+class CarModel(models.Model):
+    make = models.ForeignKey(Make, related_name='models', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Car(models.Model):
 
     state_choice = (
@@ -107,6 +122,12 @@ class Car(models.Model):
         ('Hydrogen ', 'Hydrogen'),
     )
 
+    car_conditions = (
+        ('New', 'New'),
+        ('Used', 'Used'),
+        ('Certified', 'Certified'),
+    )
+
     color_choices = (
         ('Red', 'Red'),
         ('Blue', 'Blue'),
@@ -130,13 +151,15 @@ class Car(models.Model):
         ('Gold', 'Gold')
     )
 
+    make = models.ForeignKey(Make, on_delete=models.CASCADE)
+    model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
     car_title = models.CharField(max_length=255)
     state = models.CharField(choices=state_choice, max_length=100)
     city = models.CharField(max_length=100)
     color = models.CharField(choices=color_choices, max_length=100)
-    model = models.CharField(max_length=100)
+   
     year = models.IntegerField(('year'), choices=year_choice)
-    condition = models.CharField(max_length=100)
+    condition = models.CharField(choices=car_conditions, max_length=100)
     price = models.IntegerField()
     description = RichTextField()
     car_photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
