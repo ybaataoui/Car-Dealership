@@ -24,7 +24,7 @@ const Home = () => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
-
+  console.log(cars)
 
   const backgroundStyle = {
     backgroundImage: `url(${bgImage})`,
@@ -97,7 +97,7 @@ const Home = () => {
             value={selectedType}
             aria-label="Select a car type"
           >
-            <option value="" disabled>-- Select Type --</option>
+            <option value="" >-- Select Type --</option>
             <option value="New">New</option>
             <option value="Used">Used</option>
             <option value="Certified">Certified</option>
@@ -114,7 +114,7 @@ const Home = () => {
             value={selectedMake}
             aria-label="Select a car make"
           >
-            <option value="" disabled>-- Select Make --</option>
+            <option value="" >-- Select Make --</option>
             {makes.length > 0 ? (
               makes.map((make) => (
                 <option key={make.id} value={make.id}>{make.name}</option>
@@ -135,7 +135,7 @@ const Home = () => {
             aria-label="Select a car model"
             disabled={carModels.length === 0} // Disable the model dropdown if no models are available
           >
-            <option value="" disabled>-- Select Model --</option>
+            <option value="" >-- Select Model --</option>
             {carModels.length > 0 ? (
               carModels.map((model) => (
                 <option key={model.id} value={model.id}>{model.name}</option>
@@ -155,10 +155,10 @@ const Home = () => {
             value={selectedYear}
             aria-label="Select a car year"
           >
-            <option value="" disabled>-- Select Year --</option>
-            {makes.length > 0 ? (
-              makes.map((make) => (
-                <option key={make.id} value={make.id}>{make.name}</option>
+            <option value="" >-- Select Year --</option>
+            {cars.length > 0 ? (
+              cars.map((car) => (
+                <option key={car.id} value={car.id}>{car.year}</option>
               ))
             ) : (
               <option value="" disabled>No years available</option>
@@ -175,20 +175,18 @@ const Home = () => {
             value={selectedMileage}
             aria-label="Select a car mileage"
           >
-            <option value="" disabled>-- Select Mileage --</option>
-            {makes.length > 0 ? (
-              makes.map((make) => (
-                <option key={make.id} value={make.id}>{make.name}</option>
-              ))
-            ) : (
-              <option value="" disabled>No mileage available</option>
-            )}
+            <option value="" >-- Select Mileage --</option>
+            <option value="30,000 or less" >30,000 or less</option>
+            <option value="40,000 or less" >40,000 or less</option>
+            <option value="50,000 or less" >50,000 or less</option>
+            <option value="60,000 or less" >60,000 or less</option>
+
           </select>
         </div>
 
         {/* Show Results Button */}
         <div className="ms-2">
-          <button className="btn btn-danger" type="button" onClick="">
+          <button className="btn btn-danger" type="button" onClick={fetchCars}>
             Show Results
           </button>
         </div>
