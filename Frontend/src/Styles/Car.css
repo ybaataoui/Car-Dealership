@@ -1,9 +1,15 @@
-.card {
+.card-car {
+  max-width: 100%;
+  height: 100%;
+  background-color: #1b1b1b;
+  color: #fff;
+  border-radius: 8px;
+  overflow: "hidden";
   transition: transform 0.3s ease-in-out, z-index 0s ease 0.3s;
   z-index: 1; /* Default stacking context */
 }
 
-.card:hover {
+.card-car:hover {
   transform: scale(1.07); /* Slight zoom on hover */
   z-index: 10; /* Bring the card to the front */
   transition: transform 0.3s ease-in-out, z-index 0s ease 0s; /* z-index takes effect immediately */
@@ -14,11 +20,11 @@
 }
 
 .card-footer {
-  background-color: #2b2b2b; /* A dark grey to match the theme */
+  background-color: #2b2b2b;
 }
 
 .text-danger {
-  color: #e74c3c !important; /* A bolder red for important text */
+  color: #e74c3c !important;
 }
 
 .text-warning {

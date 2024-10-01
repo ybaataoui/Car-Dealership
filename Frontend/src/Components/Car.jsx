@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import "../Styles/Car.css";
 
 const Car = ({ car }) => {
+  console.log(car)
   return (
     <div
-      className="card mb-4 shadow-lg"
-      style={{
-        maxWidth: "100%",
-        height: "100%",
-        backgroundColor: "#1b1b1b", // Dark background for the card
-        color: "#fff", // White text to stand out against the dark background
-        borderRadius: "8px", // Slight rounding of card corners
-        overflow: "hidden", // Ensures no overflow issues
-      }}
+      className="card card-car mb-4 shadow-lg"
+      // style={{
+      //   maxWidth: "100%",
+      //   height: "100%",
+      //   backgroundColor: "#1b1b1b", // Dark background for the card
+      //   color: "#fff", // White text to stand out against the dark background
+      //   borderRadius: "8px", // Slight rounding of card corners
+      //   overflow: "hidden", // Ensures no overflow issues
+      // }}
       key={car.id}
     >
       {/* Make the image clickable */}
@@ -56,7 +57,7 @@ const Car = ({ car }) => {
       {/* Car Type and Price */}
       <div className="card-footer bg-dark text-white py-2">
         <div className="d-flex justify-content-between">
-          <div className="text-start flex-fill text-info">{car.model}</div>
+          <div className="text-start flex-fill text-info">{car.body_style}</div>
           <div className="text-end flex-fill text-success">
             ${car.price.toLocaleString()}
           </div>

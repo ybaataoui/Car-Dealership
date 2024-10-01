@@ -36,7 +36,7 @@ function RegisterForm({ route, method }) {
       <div className="contact-section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-8">
+            <div className="col-lg-6 col-md-8">
               <div className="form-section card p-4 shadow-sm">
                 <div className="text-center mb-1">
                   <a href="/">
@@ -70,12 +70,13 @@ function RegisterForm({ route, method }) {
                       onChange={(e) => setLastname(e.target.value)}
                     />
                   </div> */}
+
                   <div className="form-group ">
                     <label htmlFor="username">Username</label>
                     <input
                       type="text"
                       name="username"
-                      className="form-control-lg"
+                      className="form-control"
                       placeholder="Username"
                       required
                       value={username}
