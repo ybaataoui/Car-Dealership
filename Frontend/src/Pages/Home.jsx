@@ -8,23 +8,27 @@ import api from "../api";
 import Car from "../Components/Car";
 import "../Styles/Header.css";
 import bgImage from "../assets/blackgrad.jpg";
+import { useNavigate } from "react-router-dom";
+import CarSearch from "./CarSearch";
 
 const Home = () => {
   const [cars, setCars] = useState([]);
   const [makes, setMakes] = useState([]);
   const [carModels, setCarModels] = useState([]);
-  const [type, setType] = useState('');
+  const [condition, setCondition] = useState('');
   const [year, setYear] = useState([]);
-  const [mileage, setMileage] = useState([])
+  const [miles, setMiles] = useState([])
   const [selectedMake, setSelectedMake] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
-  const [selectedType, setSelectedType] = useState('');
+  const [selectedCondition, setSelectedCondition] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
-  const [selectedMileage, setSelectedMileage] = useState('');
+  const [selectedMiles, setSelectedMiles] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
-  console.log(cars)
+  const navigate = useNavigate();
+
+  // console.log(selectedMake)
 
   const backgroundStyle = {
     backgroundImage: `url(${bgImage})`,
@@ -80,6 +84,16 @@ const Home = () => {
     return true;
   }
 
+  const handleSearch = () => {
+    const condition = selectedCondition;
+    const make = selectedMake;
+    const model = selectedModel;
+    const year = selectedYear;
+    const miles = selectedMiles;
+
+    navigate('/carSearch', { state: { condition, make, model, year, miles } })
+  }
+
 
   return (
     <div className="container" style={backgroundStyle}>
@@ -88,16 +102,16 @@ const Home = () => {
       <HomeCarousel />
 
       <div className="d-flex flex-wrap searchbar-wrap mt-4 justify-content-between">
-        {/* Type Dropdown */}
+        {/* Condition Dropdown */}
         <div className="flex-grow-1 me-2">
           <select
             id="typeSelect"
             className="form-select bg-dark text-light"
-            onChange={(e) => setSelectedType(e.target.value)}
-            value={selectedType}
+            onChange={(e) => setSelectedCondition(e.target.value)}
+            value={selectedCondition}
             aria-label="Select a car type"
           >
-            <option value="" >-- Select Type --</option>
+            <option value="" >-- Select Condition --</option>
             <option value="New">New</option>
             <option value="Used">Used</option>
             <option value="Certified">Certified</option>
@@ -158,7 +172,7 @@ const Home = () => {
             <option value="" >-- Select Year --</option>
             {cars.length > 0 ? (
               cars.map((car) => (
-                <option key={car.id} value={car.id}>{car.year}</option>
+                <option key={car.year} value={car.year}>{car.year}</option>
               ))
             ) : (
               <option value="" disabled>No years available</option>
@@ -166,27 +180,27 @@ const Home = () => {
           </select>
         </div>
 
-        {/* Mileage Dropdown */}
+        {/* Miles Dropdown */}
         <div className="flex-grow-1 me-2">
           <select
             id="mileageSelect"
             className="form-select bg-dark text-light"
-            onChange={(e) => setSelectedMileage(e.target.value)}
-            value={selectedMileage}
+            onChange={(e) => setSelectedMiles(e.target.value)}
+            value={selectedMiles}
             aria-label="Select a car mileage"
           >
             <option value="" >-- Select Mileage --</option>
-            <option value="30,000 or less" >30,000 or less</option>
-            <option value="40,000 or less" >40,000 or less</option>
-            <option value="50,000 or less" >50,000 or less</option>
-            <option value="60,000 or less" >60,000 or less</option>
+            <option value="30000" >30,000 or less</option>
+            <option value="40000" >40,000 or less</option>
+            <option value="50000" >50,000 or less</option>
+            <option value="60000" >60,000 or less</option>
 
           </select>
         </div>
 
         {/* Show Results Button */}
         <div className="ms-2">
-          <button className="btn btn-danger" type="button" onClick={fetchCars}>
+          <button className="btn btn-danger" type="button" onClick={handleSearch}>
             Show Results
           </button>
         </div>

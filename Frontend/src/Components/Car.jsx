@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/Car.css";
 
 const Car = ({ car }) => {
-  console.log(car)
+  // console.log(car)
   return (
     <div
       className="card card-car mb-4 shadow-lg"
@@ -34,13 +34,13 @@ const Car = ({ car }) => {
       {/* Car Details */}
       <div className="card-footer bg-dark text-white py-2">
         <div className="d-flex justify-content-between">
-          <div className="text-center flex-fill">
-            <span>{car.miles} mi</span>
+          <div className="text-start flex-fill">
+            <span>{car.miles.toLocaleString()} mi</span>
           </div>
           <div className="text-center flex-fill">
             <span>{car.year}</span>
           </div>
-          <div className="text-center flex-fill">
+          <div className="text-end flex-fill">
             <span>{car.transmission}</span>
           </div>
         </div>

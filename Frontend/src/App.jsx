@@ -11,6 +11,7 @@ import NewInquiry from "./Pages/NewInquiry";
 import AboutUs from "./Pages/About";
 import ContactUs from "./Pages/Contact";
 import Services from "./Pages/Services";
+import CarSearch from "./Pages/CarSearch";
 
 function Logout() {
   localStorage.clear();
@@ -44,6 +45,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/carSearch" element={<CarSearch />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
