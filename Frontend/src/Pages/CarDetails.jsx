@@ -8,7 +8,7 @@ import {
   faHome,
   faPhone,
   faEnvelope,
-  faMapMarker,
+  faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -110,7 +110,7 @@ function CarDetails() {
               <div className="text-start flex-fill ">
                 <p className="fw-bold"> {car.car_title}</p>
                 <p>
-                  <FontAwesomeIcon icon={faMapMarker} /> {car.city}
+                  <FontAwesomeIcon icon={faMapMarkerAlt} /> {car.city}
                 </p>
               </div>
               <div className="text-end flex-fill text-danger fw-bold">
@@ -172,9 +172,8 @@ function CarDetails() {
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${
-                      activeTab === "description" ? "active" : ""
-                    }`}
+                    className={`nav-link ${activeTab === "description" ? "active" : ""
+                      }`}
                     aria-current="page"
                     onClick={showDescription}
                   >
@@ -184,9 +183,8 @@ function CarDetails() {
 
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${
-                      activeTab === "features" ? "active" : ""
-                    }`}
+                    className={`nav-link ${activeTab === "features" ? "active" : ""
+                      }`}
                     onClick={showFeatures}
                   >
                     Features

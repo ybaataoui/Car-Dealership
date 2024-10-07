@@ -1,0 +1,59 @@
+#carDetailsSlider {
+  max-height: 300px; /* Adjust this height to match your design */
+  overflow: hidden; /* Prevents the carousel from exceeding the height */
+}
+
+.Card-car-photo {
+  background-color: #fdf8f8;
+  padding: 15px;
+  border-right: 2px solid #c6c4c4;
+}
+
+/* CSS to control the carousel image height */
+.card-carousel-img {
+  height: 250px; /* Adjust this value to control the carousel height */
+  object-fit: cover; /* Ensures the image covers the space without distorting */
+  width: 100%; /* Keeps the image responsive and filling the container */
+}
+
+.Card-carousel-indicators {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.Card-carousel-indicators li {
+  width: auto;
+  height: auto;
+  margin: 5px;
+}
+
+.carousel-indicators li img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease-in-out;
+}
+
+.small-car-image {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.CardImg {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.car-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.car-link:hover {
+  text-decoration: none; /* Prevent underline on hover */
+}
