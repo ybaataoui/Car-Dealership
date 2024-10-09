@@ -20,3 +20,13 @@ class Inquiry(models.Model):
     def __str__(self):
         return f"Inquiry from {self.first_name} {self.last_name} for {self.car.car_title if self.car else 'Unknown Car'}"
 
+class Message(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True) #, auto_now_add=True
+
+    def __str__(self):
+        return f"Message from {self.name} for {self.car.car_title if self.car else 'Unknown Car'}"

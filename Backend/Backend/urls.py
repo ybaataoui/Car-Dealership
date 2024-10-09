@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from api.views import CreateUserView, UserInfoView, CheckUserLoggedInView
-from inquiries.views import CreateInquiryView
+from inquiries.views import CreateInquiryView, CreateMessageView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,6 +15,7 @@ urlpatterns = [
     path("api/userinfo/", UserInfoView.as_view(), name="user-info"),
     path("api/check-user-logged-in/", CheckUserLoggedInView.as_view(), name="check-user-logged-in"),
     path("api/inquiries/", CreateInquiryView, name="create-inquiry"),
+    path("api/messages/", CreateMessageView.as_view(), name="create_message"),
     path("api/", include("inquiries.urls")),
     path("api/", include("Car.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #this line is for sotoring pictures locally

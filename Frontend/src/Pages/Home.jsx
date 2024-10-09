@@ -15,16 +15,16 @@ const Home = () => {
   const [cars, setCars] = useState([]);
   const [makes, setMakes] = useState([]);
   const [carModels, setCarModels] = useState([]);
-  const [condition, setCondition] = useState('');
+  const [condition, setCondition] = useState("");
   const [year, setYear] = useState([]);
-  const [miles, setMiles] = useState([])
-  const [selectedMake, setSelectedMake] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedCondition, setSelectedCondition] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedMiles, setSelectedMiles] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [miles, setMiles] = useState([]);
+  const [selectedMake, setSelectedMake] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const [selectedCondition, setSelectedCondition] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedMiles, setSelectedMiles] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   const navigate = useNavigate();
 
@@ -46,10 +46,10 @@ const Home = () => {
   useEffect(() => {
     const fetchMakes = async () => {
       try {
-        const response = await api.get('/api/makes/');
+        const response = await api.get("/api/makes/");
         setMakes(response.data);
       } catch (error) {
-        console.error('Error fetching makes:', error);
+        console.error("Error fetching makes:", error);
       }
     };
     fetchMakes();
@@ -82,7 +82,7 @@ const Home = () => {
     if (minPrice && car.price < minPrice) return false;
     if (maxPrice && car.price > maxPrice) return false;
     return true;
-  }
+  };
 
   const handleSearch = () => {
     const condition = selectedCondition;
@@ -91,9 +91,8 @@ const Home = () => {
     const year = selectedYear;
     const miles = selectedMiles;
 
-    navigate('/carSearch', { state: { condition, make, model, year, miles } })
-  }
-
+    navigate("/cars", { state: { condition, make, model, year, miles } });
+  };
 
   return (
     <div className="container" style={backgroundStyle}>
@@ -111,13 +110,12 @@ const Home = () => {
             value={selectedCondition}
             aria-label="Select a car type"
           >
-            <option value="" >-- Select Condition --</option>
+            <option value="">-- Select Condition --</option>
             <option value="New">New</option>
             <option value="Used">Used</option>
             <option value="Certified">Certified</option>
           </select>
         </div>
-
 
         {/* Make Dropdown */}
         <div className="flex-grow-1 me-2">
@@ -128,13 +126,17 @@ const Home = () => {
             value={selectedMake}
             aria-label="Select a car make"
           >
-            <option value="" >-- Select Make --</option>
+            <option value="">-- Select Make --</option>
             {makes.length > 0 ? (
               makes.map((make) => (
-                <option key={make.id} value={make.id}>{make.name}</option>
+                <option key={make.id} value={make.id}>
+                  {make.name}
+                </option>
               ))
             ) : (
-              <option value="" disabled>No makes available</option>
+              <option value="" disabled>
+                No makes available
+              </option>
             )}
           </select>
         </div>
@@ -149,13 +151,17 @@ const Home = () => {
             aria-label="Select a car model"
             disabled={carModels.length === 0} // Disable the model dropdown if no models are available
           >
-            <option value="" >-- Select Model --</option>
+            <option value="">-- Select Model --</option>
             {carModels.length > 0 ? (
               carModels.map((model) => (
-                <option key={model.id} value={model.id}>{model.name}</option>
+                <option key={model.id} value={model.id}>
+                  {model.name}
+                </option>
               ))
             ) : (
-              <option value="" disabled>No models available</option>
+              <option value="" disabled>
+                No models available
+              </option>
             )}
           </select>
         </div>
@@ -169,13 +175,17 @@ const Home = () => {
             value={selectedYear}
             aria-label="Select a car year"
           >
-            <option value="" >-- Select Year --</option>
+            <option value="">-- Select Year --</option>
             {cars.length > 0 ? (
               cars.map((car) => (
-                <option key={car.year} value={car.year}>{car.year}</option>
+                <option key={car.year} value={car.year}>
+                  {car.year}
+                </option>
               ))
             ) : (
-              <option value="" disabled>No years available</option>
+              <option value="" disabled>
+                No years available
+              </option>
             )}
           </select>
         </div>
@@ -189,23 +199,25 @@ const Home = () => {
             value={selectedMiles}
             aria-label="Select a car mileage"
           >
-            <option value="" >-- Select Mileage --</option>
-            <option value="30000" >30,000 or less</option>
-            <option value="40000" >40,000 or less</option>
-            <option value="50000" >50,000 or less</option>
-            <option value="60000" >60,000 or less</option>
-
+            <option value="">-- Select Mileage --</option>
+            <option value="30000">30,000 or less</option>
+            <option value="40000">40,000 or less</option>
+            <option value="50000">50,000 or less</option>
+            <option value="60000">60,000 or less</option>
           </select>
         </div>
 
         {/* Show Results Button */}
         <div className="ms-2">
-          <button className="btn btn-danger" type="button" onClick={handleSearch}>
+          <button
+            className="btn btn-danger"
+            type="button"
+            onClick={handleSearch}
+          >
             Show Results
           </button>
         </div>
       </div>
-
 
       <div className="mt-4">
         <div className="row flex-wrap">

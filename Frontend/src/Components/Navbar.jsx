@@ -20,7 +20,7 @@ function NavBar() {
                 <Nav.Link to="/">
                   <Link to="/">HOME</Link>
                 </Nav.Link>
-                <Nav.Link to="/">
+                <Nav.Link>
                   <Link to="/cars">CARS</Link>
                 </Nav.Link>
                 <Nav.Link href="#link">

@@ -1,9 +1,8 @@
-from rest_framework import generics
-from .serializers import  InquirySerializer
+from rest_framework import generics, permissions
+from .serializers import  InquirySerializer, MessageSerializer
 from rest_framework.permissions import IsAuthenticated
-from .models import Inquiry
+from .models import Inquiry, Message
 from Car.models import Car
-import logging
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -60,4 +59,19 @@ def CreateInquiryView(request):
     )
     return Response({"message": "Inquiry created successfully!"})
 
-   
+# @api_view(['POST'])
+# def CreateMessageView(request):
+#     car_id = request.data.get('car_id')
+#     car = Car.objects.get(id=car_id)  # Retrieve the car by ID
+#     message = Message.objects.create(
+#         car = car,
+#         name = request.data.get('name'),
+#         email = request.data.get('email'),
+#         phone = request.data.get('phone'),
+#         message = request.data.get('message'),
+#     )
+
+class CreateMessageView(generics.CreateAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    permission_classes = [permissions.AllowAny]

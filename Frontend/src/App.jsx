@@ -45,7 +45,6 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/carSearch" element={<CarSearch />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
