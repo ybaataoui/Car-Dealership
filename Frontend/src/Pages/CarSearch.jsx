@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Breadcrumb } from "react-bootstrap";
 import TopBar from "../Components/TopBar";
 import NavBar from "../Components/Navbar";
 import Footer from "./Footer";
 import CompanyInformation from "./CompanyInformation";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import api from "../api";
 import CarTemplate from "../Components/CarTemplate";
 import "../Styles/CarSearch.css";
@@ -97,6 +98,19 @@ function CarSearch() {
             <TopBar />
             <NavBar />
             <div className="mt-4">
+                <div className="text-center">
+                    <Breadcrumb className="custom-breadcrumb text-center">
+                        <Breadcrumb.Item
+                            className=""
+                            linkAs={Link}
+                            linkProps={{ to: "/" }}
+                            style={{ color: "white" }}
+                        >
+                            Home
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item active>Cars</Breadcrumb.Item>
+                    </Breadcrumb>
+                </div>
                 <div className="row">
                     {/* Search / Filter Sidebar on the left */}
                     <div className="col-12 col-md-3 bg-light filter-menu">

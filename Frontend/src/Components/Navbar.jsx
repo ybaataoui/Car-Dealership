@@ -21,7 +21,7 @@ function NavBar() {
                   <Link to="/">HOME</Link>
                 </Nav.Link>
                 <Nav.Link to="/">
-                  <Link to="/">CARS</Link>
+                  <Link to="/cars">CARS</Link>
                 </Nav.Link>
                 <Nav.Link href="#link">
                   <Link to="/services">OUR SERVICES</Link>

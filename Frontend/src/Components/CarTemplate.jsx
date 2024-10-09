@@ -27,7 +27,7 @@ const CarTemplate = ({ car }) => {
                                 interval={3000}
                                 fade
                             >
-                                {carouselItems.map((item) => (
+                                {carouselItems.map((item, index) => (
                                     <Carousel.Item key={item.id}>
                                         <img
                                             src={item.src}

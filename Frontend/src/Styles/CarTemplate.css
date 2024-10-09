@@ -1,5 +1,5 @@
 #carDetailsSlider {
-  max-height: 300px; /* Adjust this height to match your design */
+  max-height: 250px;
   overflow: hidden; /* Prevents the carousel from exceeding the height */
 }
 
