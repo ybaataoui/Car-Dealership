@@ -12,7 +12,7 @@ class InquirySerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    car_id = serializers.PrimaryKeyRelatedField(queryset=Car.objects.all(), source='car')
+    car_id = serializers.PrimaryKeyRelatedField(queryset=Car.objects.all(), source='car', required=False)
 
     class Meta:
         model = Message

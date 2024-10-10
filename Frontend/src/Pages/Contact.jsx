@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Alert } from "react-bootstrap";
 import "../Styles/Contact.css";
 import TopBar from "../Components/TopBar";
 import NavBar from "../Components/Navbar";
@@ -12,6 +12,7 @@ import {
   faGlobe,
   faFax,
 } from "@fortawesome/free-solid-svg-icons";
+import api from "../api";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const ContactUs = () => {
     message: "",
   });
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,27 +33,14 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        setMessage("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        setMessage("Failed to send message.");
-      }
+      const res = await api.post("/api/messages/", formData);
+      setMessage(true);
+      setTimeout(() => {
+        setMessage(false);
+      }, 2000);
     } catch (error) {
-      setMessage("Error: " + error.message);
+      console.error("There was an error submitting the form:", error);
+      alert("Failed to submit the form. Please try again.");
     }
   };
 
@@ -81,7 +69,13 @@ const ContactUs = () => {
           </div>
           {/* Sub Banner end */}
           <div className="container ">
-            {message && <div className="alert alert-info">{message}</div>}{" "}
+            {/* Success message */}
+            {message && (
+              <Alert variant="success" className="text-center">
+                <strong>Thank you!</strong> We have received your message and
+                will contact you as soon as possible.
+              </Alert>
+            )}
             {/* Success/Error message */}
             <form onSubmit={handleSubmit} className="contact-form mt-4 mb-4">
               <div className="row">

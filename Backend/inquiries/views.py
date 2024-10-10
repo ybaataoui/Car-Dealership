@@ -75,3 +75,9 @@ class CreateMessageView(generics.CreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = [permissions.AllowAny]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        if self.request.method == 'POST':
+            context['require_car_id'] = 'car_id' in self.request.data
+        return context

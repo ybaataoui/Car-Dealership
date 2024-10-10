@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap"; // Assuming you're using react-bootstrap
+import { Modal, Button, Alert } from "react-bootstrap"; // Assuming you're using react-bootstrap
 // import "../Styles/Model.css";
 import logo from "../assets/logo-dark.png";
 import api from "../api";
@@ -15,7 +15,7 @@ function MessageModel({ show, handleClose, car }) {
     message: "",
   });
 
-  const [message, setMessage] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,14 +26,16 @@ function MessageModel({ show, handleClose, car }) {
   // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Message Data: ", formData);
+
     try {
       const res = await api.post("/api/messages/", formData);
-      // Log the response
-      console.log("Response: ", res.data);
-      //alert("Form submitted successfully!");
-      handleClose();
-      navigate("/cars");
+      setShowSuccessMessage(true);
+
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        handleClose();
+        navigate("/cars");
+      }, 3000);
     } catch (error) {
       console.error("There was an error submitting the form:", error);
       alert("Failed to submit the form. Please try again.");
@@ -48,6 +50,14 @@ function MessageModel({ show, handleClose, car }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {/* Success message */}
+        {showSuccessMessage && (
+          <Alert variant="success" className="text-center">
+            <strong>Thank you!</strong> We have received your message and will
+            contact you as soon as possible.
+          </Alert>
+        )}
+
         <form onSubmit={handleSubmit} className="form-container">
           <div className="col-lg">
             <div className="row">

@@ -10,9 +10,16 @@ class InquiryAdmin(admin.ModelAdmin):
     list_filter = ('customer', 'car', 'created_at')
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'car', 'name', 'email', 'phone', 'message','created_at')
+    list_display = ('id', 'get_car_title', 'name', 'email', 'phone', 'message','created_at')
     search_fields = ('car','name')
     list_filter = ('car', 'created_at')
+
+    #Method to diplay the car_titel
+    def get_car_title(self, obj):
+        return obj.car.car_title if obj.car else 'No Car'
+    
+    #set the column name in the admin list
+    get_car_title.short_description = 'Subject'
 
 # Register the Inquiry model with custom admin settings
 admin.site.register(Inquiry, InquiryAdmin)
