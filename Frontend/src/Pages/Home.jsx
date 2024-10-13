@@ -9,27 +9,19 @@ import Car from "../Components/Car";
 import "../Styles/Header.css";
 import bgImage from "../assets/blackgrad.jpg";
 import { useNavigate } from "react-router-dom";
-import CarSearch from "./CarSearch";
 
 const Home = () => {
   const [cars, setCars] = useState([]);
   const [makes, setMakes] = useState([]);
   const [carModels, setCarModels] = useState([]);
-  const [condition, setCondition] = useState("");
-  const [year, setYear] = useState([]);
-  const [miles, setMiles] = useState([]);
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedMiles, setSelectedMiles] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-
   const navigate = useNavigate();
 
-  // console.log(selectedMake)
-
+  // Background Style
   const backgroundStyle = {
     backgroundImage: `url(${bgImage})`,
     backgroundSize: "cover",
@@ -43,6 +35,7 @@ const Home = () => {
     fetchCars();
   }, []);
 
+  // Fetch car makes
   useEffect(() => {
     const fetchMakes = async () => {
       try {
@@ -55,6 +48,7 @@ const Home = () => {
     fetchMakes();
   }, []);
 
+  // Fetch car models based on selected make
   useEffect(() => {
     const fetchCarModels = async () => {
       if (selectedMake) {
@@ -67,6 +61,7 @@ const Home = () => {
     fetchCarModels();
   }, [selectedMake]);
 
+  // Fetch all cars
   const fetchCars = async () => {
     try {
       const response = await api.get("/api/cars/");
@@ -77,20 +72,33 @@ const Home = () => {
     }
   };
 
-  // Function to handle the price filter
-  const filterCarByPrice = (car) => {
-    if (minPrice && car.price < minPrice) return false;
-    if (maxPrice && car.price > maxPrice) return false;
-    return true;
+  // Function to sort cars by created date (newest first)
+  const filterCarByDate = (cars, order = "desc") => {
+    if (!cars || !cars.length) return [];
+    return cars.sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return order === "asc" ? dateA - dateB : dateB - dateA;
+    });
   };
 
+  // Sorted cars by newest first
+  const sortedCars = filterCarByDate(cars, "asc");
+
+  // Unique years for the year dropdown
+  const uniqueYears = [...new Set(cars.map((car) => car.year))].sort();
+
+  // Features cars
+  console.log(cars);
+  const featuresCars = cars.filter((car) => car.is_featured == true);
+
+  // Handle search click and navigate to car results page
   const handleSearch = () => {
     const condition = selectedCondition;
     const make = selectedMake;
     const model = selectedModel;
     const year = selectedYear;
     const miles = selectedMiles;
-
     navigate("/cars", { state: { condition, make, model, year, miles } });
   };
 
@@ -100,6 +108,7 @@ const Home = () => {
       <NavBar />
       <HomeCarousel />
 
+      {/* Search bar */}
       <div className="d-flex flex-wrap searchbar-wrap mt-4 justify-content-between">
         {/* Condition Dropdown */}
         <div className="flex-grow-1 me-2">
@@ -108,7 +117,7 @@ const Home = () => {
             className="form-select bg-dark text-light"
             onChange={(e) => setSelectedCondition(e.target.value)}
             value={selectedCondition}
-            aria-label="Select a car type"
+            aria-label="Select a car condition"
           >
             <option value="">-- Select Condition --</option>
             <option value="New">New</option>
@@ -149,7 +158,7 @@ const Home = () => {
             onChange={(e) => setSelectedModel(e.target.value)}
             value={selectedModel}
             aria-label="Select a car model"
-            disabled={carModels.length === 0} // Disable the model dropdown if no models are available
+            disabled={carModels.length === 0}
           >
             <option value="">-- Select Model --</option>
             {carModels.length > 0 ? (
@@ -176,10 +185,10 @@ const Home = () => {
             aria-label="Select a car year"
           >
             <option value="">-- Select Year --</option>
-            {cars.length > 0 ? (
-              cars.map((car) => (
-                <option key={car.year} value={car.year}>
-                  {car.year}
+            {uniqueYears.length > 0 ? (
+              uniqueYears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
                 </option>
               ))
             ) : (
@@ -219,9 +228,26 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-4">
+      {/* Sorted Cars Section */}
+      <div className="mt-4 ">
+        <div>
+          <h2 className="text-white text-center pb-4">Recently Add</h2>
+        </div>
         <div className="row flex-wrap">
-          {cars.filter(filterCarByPrice).map((car) => (
+          {sortedCars.map((car) => (
+            <div
+              className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+              key={car.id}
+            >
+              <Car car={car} /> {/* Render each car */}
+            </div>
+          ))}
+        </div>
+        <div>
+          <h2 className="text-white text-center pb-4">Featured Cars</h2>
+        </div>
+        <div className="row flex-wrap">
+          {featuresCars.map((car) => (
             <div
               className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               key={car.id}

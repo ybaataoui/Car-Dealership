@@ -10,267 +10,317 @@ import CarTemplate from "../Components/CarTemplate";
 import "../Styles/CarSearch.css";
 
 function CarSearch() {
-    const location = useLocation();
-    const { condition, make, model, year, miles } = location.state || {};
-    const [cars, setCars] = useState([]);
-    const [makes, setMakes] = useState([]);
-    const [models, setModels] = useState([]);
-    const [selectedMake, setSelectedMake] = useState("");
-    const [selectedModel, setSelectedModel] = useState("");
-    const [filters, setFilters] = useState({
-        condition: condition || "",
-        make: make || "",
-        model: model || "",
-        year: year || "",
-        miles: miles || "",
-        minPrice: "",
-        maxPrice: "",
-        transmission: "",
-    });
+  const location = useLocation();
+  const { condition, make, model, year, miles } = location.state || {};
+  const [cars, setCars] = useState([]);
+  const [makes, setMakes] = useState([]);
+  const [models, setModels] = useState([]);
+  const [selectedMake, setSelectedMake] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [filters, setFilters] = useState({
+    condition: condition || "",
+    make: make || "",
+    model: model || "",
+    year: year || "",
+    miles: miles || "",
+    minPrice: "",
+    maxPrice: "",
+    transmission: "",
+  });
 
-    useEffect(() => {
-        fetchCars();
-        fetchMakes();
-    }, []);
+  useEffect(() => {
+    fetchCars();
+    fetchMakes();
+  }, []);
 
-    useEffect(() => {
-        if (make) setSelectedMake(make);
-        if (model) setSelectedModel(model);
-    }, [make, model]);
+  useEffect(() => {
+    if (make) setSelectedMake(make);
+    if (model) setSelectedModel(model);
+  }, [make, model]);
 
-    useEffect(() => {
-        const fetchModels = async () => {
-            if (selectedMake) {
-                const response = await api.get(`/api/makes/${selectedMake}/models/`);
-                setModels(response.data);
-            } else {
-                setModels([]);
-            }
-        };
-        fetchModels();
-    }, [selectedMake]);
-
-    const fetchMakes = async () => {
-        try {
-            const response = await api.get('/api/makes/');
-            setMakes(response.data);
-        } catch (error) {
-            console.error('Error fetching makes:', error);
-        }
+  useEffect(() => {
+    const fetchModels = async () => {
+      if (selectedMake) {
+        const response = await api.get(`/api/makes/${selectedMake}/models/`);
+        setModels(response.data);
+      } else {
+        setModels([]);
+      }
     };
+    fetchModels();
+  }, [selectedMake]);
 
-    const fetchCars = async () => {
-        try {
-            const response = await api.get("/api/cars/");
-            setCars(response.data);
-        } catch (error) {
-            console.error("Error fetching car data:", error);
-            alert("An error occurred while fetching the car listings.");
-        }
-    };
+  const fetchMakes = async () => {
+    try {
+      const response = await api.get("/api/makes/");
+      setMakes(response.data);
+    } catch (error) {
+      console.error("Error fetching makes:", error);
+    }
+  };
 
-    const handleFilterChange = (e) => {
-        const { name, value } = e.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            [name]: value,
-        }));
-    };
+  const fetchCars = async () => {
+    try {
+      const response = await api.get("/api/cars/");
+      setCars(response.data);
+    } catch (error) {
+      console.error("Error fetching car data:", error);
+      alert("An error occurred while fetching the car listings.");
+    }
+  };
 
-    // Function to filter cars based on selected filters
-    const filterCars = (car) => {
-        const matchesCondition = !filters.condition || car.condition === filters.condition;
-        const matchesMake = !filters.make || car.make === Number(filters.make);
-        const matchesModel = !filters.model || car.model === Number(filters.model);
-        const matchesYear = !filters.year || car.year === Number(filters.year);
-        const matchesMiles = !filters.miles || car.miles <= Number(filters.miles);
-        const matchesPrice = (!filters.minPrice || car.price >= Number(filters.minPrice)) &&
-            (!filters.maxPrice || car.price <= Number(filters.maxPrice));
-        const matchesTransmission = !filters.transmission ||
-            car.transmission.toLowerCase() === filters.transmission.toLowerCase();
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
 
-        return matchesCondition && matchesMake && matchesModel && matchesYear &&
-            matchesMiles && matchesPrice && matchesTransmission;
-    };
+  // Function to filter cars based on selected filters
+  const filterCars = (car) => {
+    const matchesCondition =
+      !filters.condition || car.condition === filters.condition;
+    const matchesMake = !filters.make || car.make === Number(filters.make);
+    const matchesModel = !filters.model || car.model === Number(filters.model);
+    const matchesYear = !filters.year || car.year === Number(filters.year);
+    const matchesMiles = !filters.miles || car.miles <= Number(filters.miles);
+    const matchesPrice =
+      (!filters.minPrice || car.price >= Number(filters.minPrice)) &&
+      (!filters.maxPrice || car.price <= Number(filters.maxPrice));
+    const matchesTransmission =
+      !filters.transmission ||
+      car.transmission.toLowerCase() === filters.transmission.toLowerCase();
 
     return (
-        <div className="container">
-            <TopBar />
-            <NavBar />
-            <div className="mt-4">
-                <div className="text-center">
-                    <Breadcrumb className="custom-breadcrumb text-center">
-                        <Breadcrumb.Item
-                            className=""
-                            linkAs={Link}
-                            linkProps={{ to: "/" }}
-                            style={{ color: "white" }}
-                        >
-                            Home
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item active>Cars</Breadcrumb.Item>
-                    </Breadcrumb>
-                </div>
-                <div className="row">
-                    {/* Search / Filter Sidebar on the left */}
-                    <div className="col-12 col-md-3 bg-light filter-menu">
-                        <div>
-                            {/* Car Condition Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="condition" className="form-label">Car Condition</label>
-                                <select
-                                    className="form-select"
-                                    id="condition"
-                                    name="condition"
-                                    value={filters.condition}
-                                    onChange={handleFilterChange}
-                                >
-                                    <option value="">All Types</option>
-                                    <option value="New">New</option>
-                                    <option value="Used">Used</option>
-                                    <option value="Certified">Certified</option>
-                                </select>
-                            </div>
-
-                            {/* Make Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="makeSelect" className="form-label">Make</label>
-                                <select
-                                    id="makeSelect"
-                                    className="form-select"
-                                    onChange={(e) => {
-                                        setSelectedMake(e.target.value);
-                                        handleFilterChange({ target: { name: "make", value: e.target.value } });
-                                    }}
-                                    value={selectedMake}
-                                    aria-label="Select a car make"
-                                >
-                                    <option value="">-- Select Make --</option>
-                                    {makes.length > 0 ? (
-                                        makes.map((make) => (
-                                            <option key={make.id} value={make.id}>{make.name}</option>
-                                        ))
-                                    ) : (
-                                        <option value="" disabled>No makes available</option>
-                                    )}
-                                </select>
-                            </div>
-
-                            {/* Model Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="modelSelect" className="form-label">Model</label>
-                                <select
-                                    id="modelSelect"
-                                    className="form-select"
-                                    onChange={(e) => {
-                                        setSelectedModel(e.target.value);
-                                        handleFilterChange({ target: { name: "model", value: e.target.value } });
-                                    }}
-                                    value={selectedModel}
-                                    aria-label="Select a car model"
-                                    disabled={models.length === 0} // Disable if no models are available
-                                >
-                                    <option value="">-- Select Model --</option>
-                                    {models.length > 0 ? (
-                                        models.map((model) => (
-                                            <option key={model.id} value={model.id}>{model.name}</option>
-                                        ))
-                                    ) : (
-                                        <option value="" disabled>No models available</option>
-                                    )}
-                                </select>
-                            </div>
-
-                            {/* Year Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="year" className="form-label">Year</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="year"
-                                    name="year"
-                                    placeholder="Enter Year"
-                                    value={filters.year}
-                                    onChange={handleFilterChange}
-                                />
-                            </div>
-
-                            {/* Mileage Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="miles" className="form-label">Max Miles</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="miles"
-                                    name="miles"
-                                    placeholder="Max Miles"
-                                    value={filters.miles}
-                                    onChange={handleFilterChange}
-                                />
-                            </div>
-
-                            {/* Price Range Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="price" className="form-label">Price Range</label>
-                                <div className="row">
-                                    <div className="col">
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            id="minPrice"
-                                            name="minPrice"
-                                            placeholder="Min Price"
-                                            value={filters.minPrice}
-                                            onChange={handleFilterChange}
-                                        />
-                                    </div>
-                                    <div className="col">
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            id="maxPrice"
-                                            name="maxPrice"
-                                            placeholder="Max Price"
-                                            value={filters.maxPrice}
-                                            onChange={handleFilterChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Transmission Filter */}
-                            <div className="mb-3">
-                                <label htmlFor="transmission" className="form-label">Transmission</label>
-                                <select
-                                    className="form-select"
-                                    id="transmission"
-                                    name="transmission"
-                                    value={filters.transmission}
-                                    onChange={handleFilterChange}
-                                >
-                                    <option value="">All Transmissions</option>
-                                    <option value="Automatic">Automatic</option>
-                                    <option value="Manual">Manual</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Single Car Display on the right */}
-                    <div className="col-12 col-md-9">
-                        {cars.filter(filterCars).map((car) => (
-                            <div key={car.id}>
-                                <CarTemplate car={car} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-            <CompanyInformation />
-            <Footer />
-        </div>
+      matchesCondition &&
+      matchesMake &&
+      matchesModel &&
+      matchesYear &&
+      matchesMiles &&
+      matchesPrice &&
+      matchesTransmission
     );
+  };
+
+  return (
+    <div className="container">
+      <TopBar />
+      <NavBar />
+      <div className="container bg-white d-flex justify-content-center">
+        <div className="mt-4">
+          <div className="text-center">
+            <Breadcrumb className=" text-center">
+              <Breadcrumb.Item
+                className=""
+                linkAs={Link}
+                linkProps={{ to: "/" }}
+                style={{ color: "white" }}
+              >
+                Home
+              </Breadcrumb.Item>
+              <Breadcrumb.Item active>Cars</Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
+          <div className="row">
+            {/* Search / Filter Sidebar on the left */}
+
+            <div className="col-12 col-md-3 bg-white filter-menu">
+              <h2 className="pb-4 pt-2 text-dark">Car Search</h2>
+              <div>
+                {/* Car Condition Filter */}
+                <div className="mb-3">
+                  <label htmlFor="condition" className="form-label text-dark">
+                    Car Condition
+                  </label>
+                  <select
+                    className="form-select"
+                    id="condition"
+                    name="condition"
+                    value={filters.condition}
+                    onChange={handleFilterChange}
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                  >
+                    <option value="">All Types</option>
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                    <option value="Certified">Certified</option>
+                  </select>
+                </div>
+
+                {/* Make Filter */}
+                <div className="mb-3">
+                  <label htmlFor="makeSelect" className="form-label text-dark">
+                    Make
+                  </label>
+                  <select
+                    className="form-select"
+                    id="makeSelect"
+                    name="make"
+                    value={filters.make}
+                    onChange={(e) => {
+                      handleFilterChange(e);
+                      setSelectedMake(e.target.value);
+                      setSelectedModel("");
+                    }}
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                  >
+                    <option value="">All Makes</option>
+                    {makes.map((make) => (
+                      <option
+                        key={make.id}
+                        value={make.id}
+                        style={{ color: "#000" }} // Ensure option text is dark
+                      >
+                        {make.make_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Model Filter */}
+                <div className="mb-3">
+                  <label htmlFor="modelSelect" className="form-label text-dark">
+                    Model
+                  </label>
+                  <select
+                    className="form-select"
+                    id="modelSelect"
+                    name="model"
+                    value={filters.model}
+                    onChange={handleFilterChange}
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    disabled={!selectedMake}
+                  >
+                    <option value="">All Models</option>
+                    {models.map((model) => (
+                      <option
+                        key={model.id}
+                        value={model.id}
+                        style={{ color: "#000" }}
+                      >
+                        {model.model_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Year Filter */}
+                <div className="mb-3">
+                  <label htmlFor="yearSelect" className="form-label text-dark">
+                    Year
+                  </label>
+                  <select
+                    className="form-select"
+                    id="yearSelect"
+                    name="year"
+                    value={filters.year}
+                    onChange={(e) => {
+                      handleFilterChange(e);
+                      setSelectedYear(e.target.value);
+                    }}
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                  >
+                    <option value="">All Years</option>
+                    {cars.map((car) => (
+                      <option
+                        key={car.year}
+                        value={car.year}
+                        style={{ color: "#000" }}
+                      >
+                        {car.year}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Mileage Filter */}
+                <div className="mb-3">
+                  <label htmlFor="miles" className="form-label text-dark">
+                    Max Mileage
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="miles"
+                    name="miles"
+                    value={filters.miles}
+                    onChange={handleFilterChange}
+                    placeholder="e.g. 50000"
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                  />
+                </div>
+
+                {/* Price Range Filter */}
+                <div className="mb-3">
+                  <label className="form-label text-dark">Price Range</label>
+                  <div className="d-flex justify-content-between">
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="minPrice"
+                      value={filters.minPrice}
+                      onChange={handleFilterChange}
+                      placeholder="Min"
+                      style={{
+                        backgroundColor: "#fdf8f8",
+                        color: "#000",
+                        marginRight: "10px",
+                      }}
+                    />
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="maxPrice"
+                      value={filters.maxPrice}
+                      onChange={handleFilterChange}
+                      placeholder="Max"
+                      style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Transmission Filter */}
+                <div className="mb-3">
+                  <label
+                    htmlFor="transmission"
+                    className="form-label text-dark"
+                  >
+                    Transmission
+                  </label>
+                  <select
+                    className="form-select"
+                    id="transmission"
+                    name="transmission"
+                    value={filters.transmission}
+                    onChange={handleFilterChange}
+                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                  >
+                    <option value="">All</option>
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Single Car Display on the right */}
+            <div className="col-8 col-md">
+              {cars.filter(filterCars).map((car) => (
+                <div key={car.id}>
+                  <CarTemplate car={car} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <CompanyInformation />
+      <Footer />
+    </div>
+  );
 }
 
 export default CarSearch;
-

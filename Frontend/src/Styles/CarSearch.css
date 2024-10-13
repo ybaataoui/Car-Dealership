@@ -1,3 +1,9 @@
 .filter-menu {
   border: 2px solid #b8b6b6;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.select-form {
+  color: black;
 }

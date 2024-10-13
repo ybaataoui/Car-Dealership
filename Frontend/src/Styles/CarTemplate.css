@@ -2,10 +2,13 @@
   max-height: 250px;
   overflow: hidden; /* Prevents the carousel from exceeding the height */
 }
+.Card-car {
+  border: 2px solid #c6c4c4;
+}
 
 .Card-car-photo {
-  background-color: #fdf8f8;
-  padding: 15px;
+  background-color: #fcf8f8;
+  padding: 10px;
   border-right: 2px solid #c6c4c4;
 }
 

@@ -33,6 +33,14 @@ function CarDetails() {
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const carPhotos = (car) => [
+    car.car_photo,
+    car.car_photo_1,
+    car.car_photo_2,
+    car.car_photo_3,
+    car.car_photo_4,
+  ];
+
   useEffect(() => {
     getCarDetails();
     getUserInfo();
@@ -124,56 +132,37 @@ function CarDetails() {
                 onSelect={handleSelect}
                 controls={false}
               >
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={car.car_photo}
-                    alt="First slide"
-                  />
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={car.car_photo}
-                    alt="Second slide"
-                  />
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={car.car_photo}
-                    alt="Third slide"
-                  />
-                </Carousel.Item>
+                {carPhotos(car).map((photo, index) => (
+                  <Carousel.Item key={index}>
+                    <img
+                      className="d-block w-100"
+                      src={photo}
+                      alt={`Slide ${index + 1}`}
+                    />
+                  </Carousel.Item>
+                ))}
               </Carousel>
               <div className="carousel-thumbnails">
-                <img
-                  className="carousel-thumbnail"
-                  src={car.car_photo}
-                  alt="Thumbnail 1"
-                  onClick={() => handleSelect(0)}
-                />
-                <img
-                  className="carousel-thumbnail"
-                  src={car.car_photo}
-                  alt="Thumbnail 2"
-                  onClick={() => handleSelect(1)}
-                />
-                <img
-                  className="carousel-thumbnail"
-                  src={car.car_photo}
-                  alt="Thumbnail 3"
-                  onClick={() => handleSelect(2)}
-                />
+                {carPhotos(car).map((photo, index) => (
+                  <img
+                    key={index}
+                    className="carousel-thumbnail"
+                    src={photo}
+                    alt={`Thumbnail ${index + 1}`}
+                    onClick={() => handleSelect(index)}
+                  />
+                ))}
               </div>
             </div>
+
             {/* Description and features tabs */}
             <div>
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "description" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "description" ? "active" : ""
+                    }`}
                     aria-current="page"
                     onClick={showDescription}
                   >
@@ -183,8 +172,9 @@ function CarDetails() {
 
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${activeTab === "features" ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      activeTab === "features" ? "active" : ""
+                    }`}
                     onClick={showFeatures}
                   >
                     Features
