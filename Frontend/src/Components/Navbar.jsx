@@ -33,7 +33,9 @@ function NavBar() {
                   <Link to="/contact">CONTACT US</Link>
                 </Nav.Link>
                 <Nav.Link href="#link">
-                  <FontAwesomeIcon icon={faSearch} />
+                  <Link to="/cars">
+                    <FontAwesomeIcon icon={faSearch} />
+                  </Link>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>

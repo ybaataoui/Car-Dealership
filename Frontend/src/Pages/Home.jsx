@@ -213,6 +213,9 @@ const Home = () => {
             <option value="40000">40,000 or less</option>
             <option value="50000">50,000 or less</option>
             <option value="60000">60,000 or less</option>
+            <option value="80000">80,000 or less</option>
+            <option value="100000">100,000 or less</option>
+            <option value="150000">150,000 or less</option>
           </select>
         </div>
 
@@ -231,10 +234,10 @@ const Home = () => {
       {/* Sorted Cars Section */}
       <div className="mt-4 ">
         <div>
-          <h2 className="text-white text-center pb-4">Recently Add</h2>
+          <h2 className="text-white  pb-4">Recently Add</h2>
         </div>
         <div className="row flex-wrap">
-          {sortedCars.map((car) => (
+          {sortedCars.slice(0, 4).map((car) => (
             <div
               className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               key={car.id}
@@ -242,12 +245,13 @@ const Home = () => {
               <Car car={car} /> {/* Render each car */}
             </div>
           ))}
+          <p className="text-white text-end"> See All New Add</p>
         </div>
         <div>
-          <h2 className="text-white text-center pb-4">Featured Cars</h2>
+          <h2 className="text-white  pb-4">Featured Cars</h2>
         </div>
         <div className="row flex-wrap">
-          {featuresCars.map((car) => (
+          {featuresCars.slice(0, 4).map((car) => (
             <div
               className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               key={car.id}
@@ -255,6 +259,7 @@ const Home = () => {
               <Car car={car} /> {/* Render each car */}
             </div>
           ))}
+          <p className="text-white text-end"> See All Featured Cars</p>
         </div>
       </div>
 

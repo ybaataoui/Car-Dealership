@@ -3,7 +3,9 @@
   margin-left: 20px;
   margin-bottom: 15px;
 }
-
-.select-form {
-  color: black;
+form-select,
+select,
+option {
+  color: #000 !important;
+  background-color: #fff !important;
 }

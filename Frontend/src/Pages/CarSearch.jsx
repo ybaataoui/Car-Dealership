@@ -105,10 +105,10 @@ function CarSearch() {
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <TopBar />
       <NavBar />
-      <div className="container bg-white d-flex justify-content-center">
+      <div className="container bg-white d-flex justify-content-center ">
         <div className="mt-4">
           <div className="text-center">
             <Breadcrumb className=" text-center">
@@ -116,7 +116,7 @@ function CarSearch() {
                 className=""
                 linkAs={Link}
                 linkProps={{ to: "/" }}
-                style={{ color: "white" }}
+                // style={{ color: "white" }}
               >
                 Home
               </Breadcrumb.Item>
@@ -140,7 +140,7 @@ function CarSearch() {
                     name="condition"
                     value={filters.condition}
                     onChange={handleFilterChange}
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{ color: "#000" }}
                   >
                     <option value="">All Types</option>
                     <option value="New">New</option>
@@ -151,7 +151,7 @@ function CarSearch() {
 
                 {/* Make Filter */}
                 <div className="mb-3">
-                  <label htmlFor="makeSelect" className="form-label text-dark">
+                  <label htmlFor="makeSelect" className="form-label">
                     Make
                   </label>
                   <select
@@ -164,16 +164,15 @@ function CarSearch() {
                       setSelectedMake(e.target.value);
                       setSelectedModel("");
                     }}
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{
+                      color: "#000 !important",
+                      backgroundColor: "#fff",
+                    }}
                   >
                     <option value="">All Makes</option>
                     {makes.map((make) => (
-                      <option
-                        key={make.id}
-                        value={make.id}
-                        style={{ color: "#000" }} // Ensure option text is dark
-                      >
-                        {make.make_name}
+                      <option key={make.id} value={make.id}>
+                        {make.name}
                       </option>
                     ))}
                   </select>
@@ -190,7 +189,7 @@ function CarSearch() {
                     name="model"
                     value={filters.model}
                     onChange={handleFilterChange}
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{ color: "#000" }}
                     disabled={!selectedMake}
                   >
                     <option value="">All Models</option>
@@ -200,7 +199,7 @@ function CarSearch() {
                         value={model.id}
                         style={{ color: "#000" }}
                       >
-                        {model.model_name}
+                        {model.name}
                       </option>
                     ))}
                   </select>
@@ -220,7 +219,7 @@ function CarSearch() {
                       handleFilterChange(e);
                       setSelectedYear(e.target.value);
                     }}
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{ color: "#000" }}
                   >
                     <option value="">All Years</option>
                     {cars.map((car) => (
@@ -248,7 +247,7 @@ function CarSearch() {
                     value={filters.miles}
                     onChange={handleFilterChange}
                     placeholder="e.g. 50000"
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{ color: "#000" }}
                   />
                 </div>
 
@@ -264,7 +263,6 @@ function CarSearch() {
                       onChange={handleFilterChange}
                       placeholder="Min"
                       style={{
-                        backgroundColor: "#fdf8f8",
                         color: "#000",
                         marginRight: "10px",
                       }}
@@ -276,7 +274,7 @@ function CarSearch() {
                       value={filters.maxPrice}
                       onChange={handleFilterChange}
                       placeholder="Max"
-                      style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                      style={{ color: "#000" }}
                     />
                   </div>
                 </div>
@@ -295,7 +293,7 @@ function CarSearch() {
                     name="transmission"
                     value={filters.transmission}
                     onChange={handleFilterChange}
-                    style={{ backgroundColor: "#fdf8f8", color: "#000" }}
+                    style={{ color: "#000" }}
                   >
                     <option value="">All</option>
                     <option value="Automatic">Automatic</option>
