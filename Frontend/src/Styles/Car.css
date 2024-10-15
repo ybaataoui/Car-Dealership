@@ -38,3 +38,50 @@
 .text-success {
   color: #2ecc71 !important; /* Bright green for price */
 }
+
+/* Ribbon Style */
+.ribbon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  z-index: 10;
+}
+
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: -25px;
+  width: 110px;
+  background-color: #dc3545;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.75rem;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Adding a triangle effect for the ribbon ends */
+.ribbon::before,
+.ribbon::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: #dc3545 transparent transparent transparent;
+}
+
+.ribbon::before {
+  top: 100%;
+  left: 0;
+  border-width: 0 10px 10px 0;
+}
+
+.ribbon::after {
+  top: 100%;
+  right: 0;
+  border-width: 0 0 10px 10px;
+}

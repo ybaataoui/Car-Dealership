@@ -6,6 +6,7 @@ import NavBar from "../Components/Navbar";
 import TopBar from "../Components/TopBar";
 import api from "../api";
 import Car from "../Components/Car";
+import FeaturedCar from "../Components/FeaturedCar";
 import "../Styles/Header.css";
 import bgImage from "../assets/blackgrad.jpg";
 import { useNavigate } from "react-router-dom";
@@ -248,18 +249,18 @@ const Home = () => {
           <p className="text-white text-end"> See All New Add</p>
         </div>
         <div>
-          <h2 className="text-white  pb-4">Featured Cars</h2>
+          <h2 className="text-white pb-4">Featured Cars</h2>
         </div>
         <div className="row flex-wrap">
           {featuresCars.slice(0, 4).map((car) => (
-            <div
-              className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-              key={car.id}
-            >
-              <Car car={car} /> {/* Render each car */}
+            <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={car.id}>
+              <div className="position-relative">
+
+                <FeaturedCar car={car} /> {/* Render each car */}
+              </div>
             </div>
           ))}
-          <p className="text-white text-end"> See All Featured Cars</p>
+          <p className="text-white text-end">See All Featured Cars</p>
         </div>
       </div>
 
