@@ -60,3 +60,24 @@
 .car-link:hover {
   text-decoration: none; /* Prevent underline on hover */
 }
+
+/* Optional: Adding a triangle effect for the ribbon ends */
+.ribbon::before,
+.ribbon::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: #dc3545 transparent transparent transparent;
+}
+
+.ribbon::before {
+  top: 100%;
+  left: 0;
+  border-width: 0 10px 10px 0;
+}
+
+.ribbon::after {
+  top: 100%;
+  right: 0;
+  border-width: 0 0 10px 10px;
+}
