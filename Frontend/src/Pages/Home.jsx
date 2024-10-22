@@ -9,7 +9,7 @@ import Car from "../Components/Car";
 import FeaturedCar from "../Components/FeaturedCar";
 import "../Styles/Header.css";
 import bgImage from "../assets/blackgrad.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Home = () => {
   const [cars, setCars] = useState([]);
@@ -246,7 +246,6 @@ const Home = () => {
               <Car car={car} /> {/* Render each car */}
             </div>
           ))}
-          <p className="text-white text-end"> See All New Add</p>
         </div>
         <div>
           <h2 className="text-white pb-4">Featured Cars</h2>
@@ -260,7 +259,8 @@ const Home = () => {
               </div>
             </div>
           ))}
-          <p className="text-white text-end">See All Featured Cars</p>
+          <Link to={'featuredCarsSearch'}><p className="text-white text-end">See All Featured Cars</p></Link>
+
         </div>
       </div>
 

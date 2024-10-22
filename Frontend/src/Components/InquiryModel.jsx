@@ -15,6 +15,7 @@ function InquiryModal({ show, handleClose, user, car }) {
   const [email, setEmail] = useState(user?.email || "");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const navigate = useNavigate();
 
   // console.log(car);
@@ -38,17 +39,19 @@ function InquiryModal({ show, handleClose, user, car }) {
     console.log("Inquiry Data: ", inquiryData);
     try {
       const res = await api.post("/api/inquiries/", inquiryData);
-
-      // Log the response
-      console.log("Response: ", res.data);
-      alert("Form submitted successfully!");
+      setSubmissionStatus("success");
+      setTimeout(() => {
+        handleClose();
+      }, 2000);
 
       navigate("/dashboard");
     } catch (error) {
       console.error("There was an error submitting the form:", error);
-      alert("Failed to submit the form. Please try again.");
+      // alert("Failed to submit the form. Please try again.");
+      setSubmissionStatus("error");
     }
   };
+
 
   return (
     <Modal show={show} onHide={handleClose} size="lg" >
@@ -58,6 +61,16 @@ function InquiryModal({ show, handleClose, user, car }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {submissionStatus === "success" && (
+          <div className="alert alert-success" role="alert">
+            Your inquiry has been submitted successfully!
+          </div>
+        )}
+        {submissionStatus === "error" && (
+          <div className="alert alert-danger" role="alert">
+            There was an error submitting the form. Please try again.
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="form-container">
           {/* First and Last Name */}
           <div className="form-group">
