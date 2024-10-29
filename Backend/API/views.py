@@ -8,8 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 
-
-
 #Create a user
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()

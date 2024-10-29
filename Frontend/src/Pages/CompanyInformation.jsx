@@ -1,6 +1,6 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faHome, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const CompanyInformation = () => {
@@ -28,21 +28,10 @@ const CompanyInformation = () => {
                 <h6 className="text-uppercase mb-4 font-weight-bold">
                   Products
                 </h6>
-                <p>
-                  <a href="#!" className="text-white">
-                    New Inventory
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Used Inventory
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Certified Used Inventory
-                  </a>
-                </p>
+                <Link to={'/cars'}><p className="text-white">New Inventory</p></Link>
+                <Link to={'/usedInventory'}><p className="text-white">Used Inventory</p></Link>
+                <Link to={'/cars'}><p className="text-white">Certified Used Inventory</p></Link>
+
               </div>
 
               <hr className="w-100 clearfix d-md-none" />
@@ -52,11 +41,9 @@ const CompanyInformation = () => {
                 <h6 className="text-uppercase mb-4 font-weight-bold">
                   Useful links
                 </h6>
-                <p>
-                  <a href="#!" className="text-white">
-                    Your Account
-                  </a>
-                </p>
+
+                <Link to={'login'}><p className="text-white">Your Account</p></Link>
+
                 <p>
                   <a href="#!" className="text-white">
                     Shipping Rates
