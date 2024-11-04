@@ -34,8 +34,6 @@ class CarModelList(generics.ListAPIView):
         make_id = self.kwargs['make_id']
         return CarModel.objects.filter(make_id=make_id)
 
-
-
 class CarListByMake(generics.ListAPIView):
     serializer_class = CarSerializer
     permission_classes = [permissions.AllowAny]

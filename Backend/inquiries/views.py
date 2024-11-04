@@ -13,7 +13,7 @@ class InquiryListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Inquiry.objects.filter(customer=user)
+        return Inquiry.objects.filter(customer=user).order_by('-created_at')
     
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -29,16 +29,6 @@ class InquiryDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Inquiry.objects.filter(customer=user)
-
-# logger = logging.getLogger(__name__)    
-# class CreateInquiryView(generics.CreateAPIView):
-#     queryset = Inquiry.objects.all()
-#     serializer_class = InquirySerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         logger.info("Incoming data: %s", self.request.data)
-#         serializer.save(customer=self.request.user)
 
 
 @api_view(['POST'])
@@ -59,17 +49,6 @@ def CreateInquiryView(request):
     )
     return Response({"message": "Inquiry created successfully!"})
 
-# @api_view(['POST'])
-# def CreateMessageView(request):
-#     car_id = request.data.get('car_id')
-#     car = Car.objects.get(id=car_id)  # Retrieve the car by ID
-#     message = Message.objects.create(
-#         car = car,
-#         name = request.data.get('name'),
-#         email = request.data.get('email'),
-#         phone = request.data.get('phone'),
-#         message = request.data.get('message'),
-#     )
 
 class CreateMessageView(generics.CreateAPIView):
     queryset = Message.objects.all()
