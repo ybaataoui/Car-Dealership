@@ -91,15 +91,6 @@ class CarViewTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), CarModel.objects.filter(make=self.make).count())
 
-    # def test_car_list_by_make_view(self):
-    #     # Test listing cars by make
-    #     url = reverse('car-list-by-make', args=[self.make.id])  
-    #     response = self.client.get(url)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #     self.assertEqual(len(response.data), Car.objects.filter(make=self.make).count())
-
-
-
     def test_make_autocomplete_view(self):
         # Create a test user
         test_user = User.objects.create_user(username='testuser', password='password')
