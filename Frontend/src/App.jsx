@@ -13,6 +13,9 @@ import ContactUs from "./Pages/Contact";
 import Services from "./Pages/Services";
 import CarSearch from "./Pages/CarSearch";
 import FeaturedCarsSearch from "./Pages/FeaturedCarsSearch";
+import UsedCars from "./Pages/usedCars";
+import NewCars from "./Pages/NewCars";
+import CertifiedCars from "./Pages/CertifiedCars";
 
 function Logout() {
   localStorage.clear();
@@ -31,7 +34,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<CarDetails />} />
         <Route path="/cars" element={<CarSearch />} />
-        <Route path="/usedInventory" element={<CarSearch />} />
+        <Route path="/usedInventory" element={<UsedCars />} />
+        <Route path="/newInventory" element={<NewCars />} />
+        <Route path="/certifiedInventory" element={<CertifiedCars />} />
         <Route path="/newInquiry" element={<NewInquiry />} />
         <Route
           path="/dashboard"

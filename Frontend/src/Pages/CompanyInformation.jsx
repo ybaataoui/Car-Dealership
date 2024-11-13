@@ -28,9 +28,9 @@ const CompanyInformation = () => {
                 <h6 className="text-uppercase mb-4 font-weight-bold">
                   Products
                 </h6>
-                <Link to={'/cars'}><p className="text-white">New Inventory</p></Link>
+                <Link to={'/newInventory'}><p className="text-white">New Inventory</p></Link>
                 <Link to={'/usedInventory'}><p className="text-white">Used Inventory</p></Link>
-                <Link to={'/cars'}><p className="text-white">Certified Used Inventory</p></Link>
+                <Link to={'/certifiedInventory'}><p className="text-white">Certified Used Inventory</p></Link>
 
               </div>
 

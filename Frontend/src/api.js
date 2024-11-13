@@ -18,4 +18,4 @@ api.interceptors.request.use(
   }
 );
 
-export default api; //from here we will use this api instead of axios derictly.
+export default api; //from here I will use this api instead of axios derictly.

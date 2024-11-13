@@ -5,11 +5,6 @@ from .serializers import CarSerializer, MakeSerlializer, CarModelSerializer
 
 from dal import autocomplete
 
-# Create your views here.
-# class CarsListCreate(generics.CreateAPIView):
-#     def get_queryset(self):
-#         return Car.objects.
-
 class CarListCreateView(generics.ListCreateAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
