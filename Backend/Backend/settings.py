@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-kdtmy3bj(_$16670(g%=l))i&fwxi57t$27e4wacmdtftpaw5^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app"] # to allow vercel to be host to host our application.
+ALLOWED_HOSTS = ["*"] # to allow vercel to be host to host our application.
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (

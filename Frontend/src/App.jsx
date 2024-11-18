@@ -37,7 +37,7 @@ function App() {
         <Route path="/usedInventory" element={<UsedCars />} />
         <Route path="/newInventory" element={<NewCars />} />
         <Route path="/certifiedInventory" element={<CertifiedCars />} />
-        <Route path="/newInquiry" element={<NewInquiry />} />
+        {/* <Route path="/newInquiry" element={<NewInquiry />} /> */}
         <Route
           path="/dashboard"
           element={

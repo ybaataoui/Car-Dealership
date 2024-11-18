@@ -185,11 +185,14 @@ function InquiryModal({ show, handleClose, user, car }) {
               <div className="col">
                 <label>or by cell at</label>
                 <input
-                  type="text"
+                  type="tel"
                   className="form-control"
                   placeholder="Phone Number (optional)"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  pattern="[0-9]{10}" // Allows exactly 10 digits
+                  maxLength="10" // Limits input to 10 characters
+                  title="Enter a 10-digit phone number"
                 />
               </div>
             </div>

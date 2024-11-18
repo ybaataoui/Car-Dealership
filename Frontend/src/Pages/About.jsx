@@ -66,23 +66,25 @@ const AboutUs = () => {
                 </Carousel>
 
                 {/* Carousel Indicators */}
-                <ul className="carousel-indicators  list-inline ">
-                  {carouselItems.map((item, index) => (
-                    <li className="list-inline-item" key={index}>
-                      <a
-                        id={`carousel-selector-${index}`}
-                        data-slide-to={index}
-                        data-target="#carDetailsSlider"
-                      >
-                        <img
-                          src={item.src}
-                          className="img-fluid rounded small-car-image"
-                          alt="small-car"
-                        />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <div className="pb-5 mb-5">
+                  <ul className="carousel-indicators  list-inline">
+                    {carouselItems.map((item, index) => (
+                      <li className="list-inline-item" key={index}>
+                        <a
+                          id={`carousel-selector-${index}`}
+                          data-slide-to={index}
+                          data-target="#carDetailsSlider"
+                        >
+                          <img
+                            src={item.src}
+                            className="img-fluid rounded small-car-image"
+                            alt="small-car"
+                          />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 

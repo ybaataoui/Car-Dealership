@@ -20,7 +20,16 @@ function MessageModel({ show, handleClose, car }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    // Allow only numeric values
+    if (name === "phone") {
+      const phone = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+      if (phone.length <= 10) {
+        setFormData({ ...formData, [name]: phone }); // Update the state
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+    // setFormData({ ...formData, [name]: value });
   };
 
   // Form submission handler
@@ -103,12 +112,15 @@ function MessageModel({ show, handleClose, car }) {
               <div className="col-md-6">
                 <div className="form-group number">
                   <input
-                    type="text"
+                    type="tel"
                     name="phone"
                     className="form-control"
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    pattern="[0-9]{10}" // Allows exactly 10 digits
+                    maxLength="10" // Limits input to 10 characters
+                    title="Enter a 10-digit phone number"
                   />
                 </div>
               </div>
